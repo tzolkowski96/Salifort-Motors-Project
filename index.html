@@ -12,12 +12,17 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            line-height: 1.6;
         }
         .header {
             background-color: #0073e6;
             color: white;
             padding: 20px;
             text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .header:hover {
+            background-color: #005bb5;
         }
         .container {
             width: 90%;
@@ -26,13 +31,45 @@
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .container:hover {
+            transform: scale(1.02);
         }
         h2 {
             color: #0073e6;
+            border-bottom: 2px solid #0073e6;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        h2:hover {
+            color: #005bb5;
+            border-color: #005bb5;
+        }
+        h3 {
+            color: #0073e6;
+            margin-top: 20px;
+            transition: color 0.3s ease;
+        }
+        h3:hover {
+            color: #005bb5;
+        }
+        h4 {
+            color: #005bb5;
+            margin-top: 15px;
+            transition: color 0.3s ease;
+        }
+        h4:hover {
+            color: #003d7a;
         }
         .image-container {
             text-align: center;
             margin: 20px 0;
+            transition: transform 0.3s ease;
+        }
+        .image-container:hover {
+            transform: scale(1.05);
         }
         .image-container img {
             width: 80%;
@@ -40,6 +77,10 @@
             border: 1px solid #ddd;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+        .image-container img:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
         .caption {
             font-style: italic;
@@ -53,17 +94,29 @@
             color: white;
             text-align: center;
             padding: 10px 0;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .footer:hover {
+            background-color: #222;
         }
         .footer a {
             color: white;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         .footer a:hover {
+            color: #0073e6;
             text-decoration: underline;
         }
         .navbar {
             overflow: hidden;
             background-color: #333;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
         }
         .navbar a {
             float: left;
@@ -72,6 +125,7 @@
             text-align: center;
             padding: 14px 20px;
             text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .navbar a:hover {
             background-color: #ddd;
@@ -99,11 +153,57 @@
             left: 50%; 
             margin-left: -100px;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .tooltip:hover .tooltiptext {
             visibility: visible;
             opacity: 1;
+        }
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .highlight:hover {
+            background-color: #ffd700;
+        }
+        .callout {
+            background-color: #e3f2fd;
+            border-left: 5px solid #0073e6;
+            padding: 10px 20px;
+            margin: 20px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .callout:hover {
+            background-color: #bbdefb;
+            border-color: #005bb5;
+        }
+        .collapsible {
+            background-color: #0073e6;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .collapsible:hover {
+            background-color: #005bb5;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            margin-top: 10px;
+        }
+        .content p {
+            padding: 10px 0;
         }
     </style>
 </head>
@@ -137,7 +237,10 @@
             <h2>Data Exploration and Visualization</h2>
             <p>Our journey starts with exploring the data. Think of it like getting to know the team better by looking at different aspects of their work life.</p>
             <h3>Data Preparation</h3>
-            <p>The data preparation stage involved cleaning the dataset and encoding categorical variables using one-hot encoding. This process ensures that our data is ready for analysis and modeling. Categorical variables like 'Department' and 'salary' were transformed into numerical values that models can understand.</p>
+            <button class="collapsible">Data Preparation Details</button>
+            <div class="content">
+                <p>The data preparation stage involved cleaning the dataset and encoding categorical variables using one-hot encoding. This process ensures that our data is ready for analysis and modeling. Categorical variables like 'Department' and 'salary' were transformed into numerical values that models can understand.</p>
+            </div>
             <h3>Data Introduction</h3>
             <p>The dataset provided by the HR department contains 15,000 rows and 10 columns, including:</p>
             <ul>
@@ -245,57 +348,73 @@
             <h2>Further Analysis and Insights</h2>
             <p>After exploring the data, we dig deeper to uncover more insights.</p>
             <h3>PACE Framework</h3>
-            <h4>Plan Stage</h4>
-            <p>The Plan stage involved understanding the business scenario and problem. The HR department at Salifort Motors wanted to improve employee satisfaction levels and reduce turnover. They asked for data-driven suggestions to identify factors influencing employees' decisions to leave.</p>
-            <h4>Analyze Stage</h4>
-            <p>In the Analyze stage, I conducted an in-depth exploratory data analysis (EDA). This involved visualizing relationships between variables, detecting patterns, and identifying key factors influencing employee retention. For example, by looking at the correlation heatmap, we saw that satisfaction levels had a significant impact on whether employees stayed or left.</p>
-            <h4>Construct Stage</h4>
-            <p>During the Construct stage, I built predictive models to forecast employee turnover. Several models were considered, including Logistic Regression, Random Forest, and XGBoost. Logistic Regression is a simple model that helps us understand the impact of each feature on the outcome. Random Forest and XGBoost are more complex models that can capture intricate patterns in the data. These models were chosen for their balance between interpretability and predictive power.</p>
-            <p><b>Logistic Regression:</b> This model is like a more advanced version of linear regression but used for classification. It's great for understanding the influence of different features but might not capture complex patterns.</p>
-            <p><b>Random Forest:</b> Imagine a forest with many trees, where each tree makes a prediction. The forest combines these predictions for a more accurate result. It helps capture complex relationships in the data.</p>
-            <p><b>XGBoost:</b> This is a powerful model that improves on the predictions of previous models by learning from their mistakes. It’s like a very diligent student who learns quickly from every error.</p>
-            <h4>Execute Stage</h4>
-            <p>In the Execute stage, I interpreted the model results and made actionable recommendations. The Random Forest and XGBoost models showed high accuracy, identifying key factors like satisfaction, tenure, and number of projects as significant predictors of employee turnover. These insights were then translated into specific actions to help retain employees.</p>
+            <button class="collapsible">Plan Stage</button>
+            <div class="content">
+                <p>The Plan stage involved understanding the business scenario and problem. The HR department at Salifort Motors wanted to improve employee satisfaction levels and reduce turnover. They asked for data-driven suggestions to identify factors influencing employees' decisions to leave.</p>
+            </div>
+            <button class="collapsible">Analyze Stage</button>
+            <div class="content">
+                <p>In the Analyze stage, I conducted an in-depth exploratory data analysis (EDA). This involved visualizing relationships between variables, detecting patterns, and identifying key factors influencing employee retention. For example, by looking at the correlation heatmap, we saw that satisfaction levels had a significant impact on whether employees stayed or left.</p>
+            </div>
+            <button class="collapsible">Construct Stage</button>
+            <div class="content">
+                <p>During the Construct stage, I built predictive models to forecast employee turnover. Several models were considered, including Logistic Regression, Random Forest, and XGBoost. Logistic Regression is a simple model that helps us understand the impact of each feature on the outcome. Random Forest and XGBoost are more complex models that can capture intricate patterns in the data. These models were chosen for their balance between interpretability and predictive power.</p>
+                <p><b>Logistic Regression:</b> This model is like a more advanced version of linear regression but used for classification. It's great for understanding the influence of different features but might not capture complex patterns.</p>
+                <p><b>Random Forest:</b> Imagine a forest with many trees, where each tree makes a prediction. The forest combines these predictions for a more accurate result. It helps capture complex relationships in the data.</p>
+                <p><b>XGBoost:</b> This is a powerful model that improves on the predictions of previous models by learning from their mistakes. It’s like a very diligent student who learns quickly from every error.</p>
+            </div>
+            <button class="collapsible">Execute Stage</button>
+            <div class="content">
+                <p>In the Execute stage, I interpreted the model results and made actionable recommendations. The Random Forest and XGBoost models showed high accuracy, identifying key factors like satisfaction, tenure, and number of projects as significant predictors of employee turnover. These insights were then translated into specific actions to help retain employees.</p>
+            </div>
             
             <h3>Model Evaluation</h3>
-            <p>To evaluate our models, we used several metrics:</p>
-            <ul>
-                <li><b>Accuracy:</b> The proportion of correct predictions out of all predictions made.</li>
-                <li><b>Precision:</b> The proportion of true positive predictions out of all positive predictions made. This tells us how many of the predicted leavers actually left.</li>
-                <li><b>Recall:</b> The proportion of true positive predictions out of all actual positives. This tells us how many of the actual leavers were correctly identified.</li>
-                <li><b>F1-Score:</b> The harmonic mean of precision and recall, providing a balance between the two metrics.</li>
-            </ul>
+            <div class="callout">
+                <p><b>Accuracy:</b> The proportion of correct predictions out of all predictions made.</p>
+                <p><b>Precision:</b> The proportion of true positive predictions out of all positive predictions made. This tells us how many of the predicted leavers actually left.</p>
+                <p><b>Recall:</b> The proportion of true positive predictions out of all actual positives. This tells us how many of the actual leavers were correctly identified.</p>
+                <p><b>F1-Score:</b> The harmonic mean of precision and recall, providing a balance between the two metrics.</p>
+            </div>
             <p>Here are the evaluation metrics for each model:</p>
             <h4>Logistic Regression</h4>
             <ul>
                 <li>Accuracy: 78%</li>
-                <li>Precision: 73%</li>
-                <li>Recall: 69%</li>
-                <li>F1-Score: 71%</li>
+                <li>Precision: 73%</</li>
+                <li>Recall: 69%</</li>
+                <li>F1-Score: 71%</</li>
             </ul>
             <h4>Random Forest</h4>
             <ul>
-                <li>Accuracy: 84%</li>
-                <li>Precision: 80%</li>
-                <li>Recall: 78%</li>
-                <li>F1-Score: 79%</li>
+                <li>Accuracy: 84%</</li>
+                <li>Precision: 80%</</li>
+                <li>Recall: 78%</</li>
+                <li>F1-Score: 79%</</li>
             </ul>
             <h4>XGBoost</h4>
             <ul>
                 <li>Accuracy: 86%</</li>
-                <li>Precision: 82%</li>
-                <li>Recall: 80%</li>
-                <li>F1-Score: 81%</li>
+                <li>Precision: 82%</</li>
+                <li>Recall: 80%</</li>
+                <li>F1-Score: 81%</</li>
             </ul>
 
             <h3>Hyperparameter Tuning</h3>
-            <p>We applied GridSearchCV to fine-tune the Random Forest model. Hyperparameters are settings that can be adjusted to optimize the model's performance. GridSearchCV tests different combinations of these settings to find the best configuration. After tuning, the Random Forest model's performance improved, showing better accuracy and recall.</p>
+            <button class="collapsible">Hyperparameter Tuning Details</button>
+            <div class="content">
+                <p>We applied GridSearchCV to fine-tune the Random Forest model. Hyperparameters are settings that can be adjusted to optimize the model's performance. GridSearchCV tests different combinations of these settings to find the best configuration. After tuning, the Random Forest model's performance improved, showing better accuracy and recall.</p>
+            </div>
             
             <h3>Feature Importance Analysis</h3>
-            <p>Identifying the most important features helps us understand what factors contribute most to employee churn. Both the Random Forest and XGBoost models indicated that satisfaction level, number of projects, and last evaluation scores were the most influential features.</p>
+            <button class="collapsible">Feature Importance Analysis Details</button>
+            <div class="content">
+                <p>Identifying the most important features helps us understand what factors contribute most to employee churn. Both the Random Forest and XGBoost models indicated that satisfaction level, number of projects, and last evaluation scores were the most influential features.</p>
+            </div>
             
             <h3>Cross-Validation</h3>
-            <p>To ensure our model's performance is reliable, we employed k-fold cross-validation. This technique splits the data into k subsets and trains the model k times, each time using a different subset as the test set. This helps in obtaining a more accurate estimate of the model's performance.</p>
+            <button class="collapsible">Cross-Validation Details</button>
+            <div class="content">
+                <p>To ensure our model's performance is reliable, we employed k-fold cross-validation. This technique splits the data into k subsets and trains the model k times, each time using a different subset as the test set. This helps in obtaining a more accurate estimate of the model's performance.</p>
+            </div>
             
             <div class="image-container tooltip">
                 <img src="image_11.png" alt="Distribution of Salary Levels">
@@ -360,12 +479,30 @@
         <div class="section">
             <h2>About the Project</h2>
             <p>This project represents a thorough analysis of employee retention factors at Salifort Motors. It combines data science techniques with practical business insights to provide actionable recommendations for the HR department. For those interested, the complete code and analysis can be found in the accompanying <a href="https://github.com/tzolkowski96/tzolkowski96/tree/main/Employee-Churn-Prediction" target="_blank">Python code</a>.</p>
+            <p>Note: This project was part of the Google Advanced Data Analytics Capstone course on Coursera. The dataset used in this project is credited to the course.</p>
         </div>
     </div>
 
     <div class="footer">
         &copy; 2024 Tobin Zolkowski. All rights reserved. <a href="https://github.com/tzolkowski96/Salifort-Motors-Project" target="_blank">GitHub Repository</a>
     </div>
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
