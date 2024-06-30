@@ -260,14 +260,14 @@
             <h4>Descriptive Statistics</h4>
             <p>Here are some key statistics about the dataset:</p>
             <ul>
-                <li>Average satisfaction level: 0.61</li>
-                <li>Average last evaluation score: 0.72</li>
-                <li>Average number of projects: 3.5</li>
-                <li>Average monthly hours: 201</li>
+                <li>Average satisfaction level: 0.629</li>
+                <li>Average last evaluation score: 0.717</li>
+                <li>Average number of projects: 3.8</li>
+                <li>Average monthly hours: 200</li>
                 <li>Median tenure: 3 years</li>
-                <li>Percentage of employees who left: 23.8%</li>
-                <li>Percentage of employees who had work accidents: 14.5%</li>
-                <li>Percentage of employees who were promoted in the last 5 years: 2.63%</li>
+                <li>Percentage of employees who left: 16.6%</li>
+                <li>Percentage of employees who had work accidents: 15.4%</li>
+                <li>Percentage of employees who were promoted in the last 5 years: 1.7%</li>
             </ul>
             <h4>Reflections on Data Exploration</h4>
             <p>During the initial exploration, several interesting patterns emerged. For example, employees with lower satisfaction levels and those who were not promoted in the last 5 years showed higher turnover rates. Anomalies, such as very high or low average monthly hours, were also examined to understand their impact on turnover.</p>
@@ -283,7 +283,7 @@
                 <div class="caption">Correlation Heatmap</div>
                 <span class="tooltiptext">Displays correlation between various factors.</span>
             </div>
-            <p>This heatmap reveals how different factors like satisfaction, evaluation, and workload relate to each other. For example, we see that satisfaction has a moderate negative correlation (-0.39) with employees leaving the company, indicating that less satisfied employees are more likely to leave. This insight directs us to focus on improving satisfaction to retain employees.</p>
+            <p>This heatmap reveals how different factors like satisfaction, evaluation, and workload relate to each other. For example, we see that satisfaction has a moderate negative correlation (-0.35) with employees leaving the company, indicating that less satisfied employees are more likely to leave. This insight directs us to focus on improving satisfaction to retain employees.</p>
             
             <div class="image-container tooltip">
                 <img src="image_3.png" alt="Employees Leaving by Department">
@@ -304,28 +304,28 @@
                 <div class="caption">Distribution of Satisfaction Levels</div>
                 <span class="tooltiptext">Displays the distribution of employee satisfaction levels.</span>
             </div>
-            <p>Understanding satisfaction levels helps us know how happy our team is. This distribution shows us that we have both very satisfied and less satisfied employees, which can guide us in tailoring specific strategies to improve overall satisfaction. The average satisfaction level is 0.61, with a notable portion of employees having satisfaction levels below 0.5.</p>
+            <p>Understanding satisfaction levels helps us know how happy our team is. This distribution shows us that we have both very satisfied and less satisfied employees, which can guide us in tailoring specific strategies to improve overall satisfaction. The average satisfaction level is 0.629, with a notable portion of employees having satisfaction levels below 0.5.</p>
             
             <div class="image-container tooltip">
                 <img src="image_6.png" alt="Distribution of Last Evaluation Scores">
                 <div class="caption">Distribution of Last Evaluation Scores</div>
                 <span class="tooltiptext">Shows the distribution of employee last evaluation scores.</span>
             </div>
-            <p>Performance evaluations tell us how employees are doing at their jobs. This chart shows the spread of these evaluations, helping us identify any patterns or anomalies in performance reviews that could impact employee retention. Most employees have evaluation scores between 0.55 and 0.75, with a mean score of 0.72.</p>
+            <p>Performance evaluations tell us how employees are doing at their jobs. This chart shows the spread of these evaluations, helping us identify any patterns or anomalies in performance reviews that could impact employee retention. Most employees have evaluation scores between 0.55 and 0.75, with a mean score of 0.717.</p>
             
             <div class="image-container tooltip">
                 <img src="image_7.png" alt="Number of Projects Undertaken by Employees">
                 <div class="caption">Number of Projects Undertaken by Employees</div>
                 <span class="tooltiptext">Illustrates the number of projects employees are involved in.</span>
             </div>
-            <p>Project involvement can indicate workload and stress. This chart shows the number of projects employees are handling. Employees with too many projects might feel overwhelmed, while those with too few might feel underutilized. The average number of projects per employee is 3.5.</p>
+            <p>Project involvement can indicate workload and stress. This chart shows the number of projects employees are handling. Employees with too many projects might feel overwhelmed, while those with too few might feel underutilized. The average number of projects per employee is 3.8.</p>
             
             <div class="image-container tooltip">
                 <img src="image_8.png" alt="Distribution of Average Monthly Hours">
                 <div class="caption">Distribution of Average Monthly Hours</div>
                 <span class="tooltiptext">Displays the distribution of average monthly hours worked by employees.</span>
             </div>
-            <p>How many hours employees work each month can impact their satisfaction and performance. This distribution gives us a clear picture, showing that most employees work between 150 and 250 hours per month. Outliers on either end could indicate overwork or under-engagement. The average monthly hours is 201.</p>
+            <p>How many hours employees work each month can impact their satisfaction and performance. This distribution gives us a clear picture, showing that most employees work between 150 and 250 hours per month. Outliers on either end could indicate overwork or under-engagement. The average monthly hours is 200.</p>
             
             <div class="image-container tooltip">
                 <img src="image_9.png" alt="Number of Years Employees Have Spent with the Company">
@@ -378,24 +378,24 @@
             <p>Here are the evaluation metrics for each model:</p>
             <h4>Logistic Regression</h4>
             <ul>
-                <li>Accuracy: 78%</li>
-                <li>Precision: 73%</</li>
-                <li>Recall: 69%</</li>
-                <li>F1-Score: 71%</</li>
+                <li>Accuracy: 83.28%</li>
+                <li>Precision: 50%</li>
+                <li>Recall: 17%</li>
+                <li>F1-Score: 26%</li>
             </ul>
             <h4>Random Forest</h4>
             <ul>
-                <li>Accuracy: 84%</</li>
-                <li>Precision: 80%</</li>
-                <li>Recall: 78%</</li>
-                <li>F1-Score: 79%</</li>
+                <li>Accuracy: 97.83%</li>
+                <li>Precision: 98%</li>
+                <li>Recall: 89%</li>
+                <li>F1-Score: 93%</li>
             </ul>
             <h4>XGBoost</h4>
             <ul>
-                <li>Accuracy: 86%</</li>
-                <li>Precision: 82%</</li>
-                <li>Recall: 80%</</li>
-                <li>F1-Score: 81%</</li>
+                <li>Accuracy: 97.96%</</li>
+                <li>Precision: 98%</</li>
+                <li>Recall: 90%</</li>
+                <li>F1-Score: 94%</</li>
             </ul>
 
             <h3>Hyperparameter Tuning</h3>
@@ -435,7 +435,7 @@
                 <div class="caption">Top 10 Important Features - Random Forest</div>
                 <span class="tooltiptext">Displays the top 10 important features in the Random Forest model.</span>
             </div>
-            <p>Using a Random Forest model, we identify the top factors that predict employee turnover. Satisfaction, tenure, and projects are key indicators. This tells us that how satisfied employees are, how long they've been with us, and how many projects they handle are crucial in understanding why they might leave. For instance, satisfaction level has a feature importance score of 0.24, making it the most significant factor.</p>
+            <p>Using a Random Forest model, we identify the top factors that predict employee turnover. Satisfaction, tenure, and projects are key indicators. This tells us that how satisfied employees are, how long they've been with us, and how many projects they handle are crucial in understanding why they might leave. For instance, satisfaction level has a feature importance score of 0.34, making it the most significant factor.</p>
             
             <div class="image-container tooltip">
                 <img src="image_14.png" alt="Top 10 Important Features - XGBoost">
@@ -449,10 +449,10 @@
                 <div class="caption">ROC Curve</div>
                 <span class="tooltiptext">Shows the ROC curve for Random Forest and XGBoost models.</span>
             </div>
-            <p>The ROC curve shows us how well our models can predict employee turnover. Both models perform exceptionally well, with high accuracy, indicating their reliability in predicting which employees might leave. The ROC AUC (Area Under the Curve) for both models is approximately 0.84, indicating strong predictive power.</p>
+            <p>The ROC curve shows us how well our models can predict employee turnover. Both models perform exceptionally well, with high accuracy, indicating their reliability in predicting which employees might leave. The ROC AUC (Area Under the Curve) for both models is approximately 0.98, indicating strong predictive power.</p>
 
             <h3>Model Comparison and Best Model Selection</h3>
-            <p>Among the three models, XGBoost showed the highest accuracy (86%) and F1-Score (81%). This model balances precision and recall well, making it the best choice for predicting employee churn. While Random Forest also performed well, XGBoost's slight edge in predictive power and its ability to learn from previous errors makes it the most suitable model for this task.</p>
+            <p>Among the three models, XGBoost showed the highest accuracy (97.96%) and F1-Score (94%). This model balances precision and recall well, making it the best choice for predicting employee churn. While Random Forest also performed well, XGBoost's slight edge in predictive power and its ability to learn from previous errors makes it the most suitable model for this task.</p>
         </div>
     </div>
 
