@@ -204,12 +204,16 @@
             margin: 5px;
             border-radius: 5px;
             transition: background-color 0.3s ease, color 0.3s ease;
+            z-index: 1002; /* Ensure buttons stay on top of the image */
         }
         .zoom-in:hover, .zoom-out:hover {
             background-color: #0073e6;
             color: #fff;
         }
         @media (max-width: 768px) {
+            body {
+                font-size: 1.1em;
+            }
             .container {
                 width: 95%;
                 padding: 15px;
@@ -221,7 +225,7 @@
                 font-size: 1.2em;
             }
             p, ul, li {
-                font-size: 0.9em;
+                font-size: 1em;
             }
             .image-container img {
                 width: 100%;
@@ -582,15 +586,32 @@
             event.stopPropagation();
             var currentScale = fullscreenImg.style.transform.match(/scale\(([^)]+)\)/);
             var scale = currentScale ? parseFloat(currentScale[1]) : 1;
-            fullscreenImg.style.transform = `scale(${scale + 0.2})`;
+            scale = Math.min(scale + 0.2, 5); // Limit max scale to 5
+            fullscreenImg.style.transform = `scale(${scale})`;
+            updateButtonVisibility(scale);
         });
 
         zoomOutButton.addEventListener('click', function(event) {
             event.stopPropagation();
             var currentScale = fullscreenImg.style.transform.match(/scale\(([^)]+)\)/);
             var scale = currentScale ? parseFloat(currentScale[1]) : 1;
-            fullscreenImg.style.transform = `scale(${scale - 0.2})`;
+            scale = Math.max(scale - 0.2, 1); // Limit min scale to 1
+            fullscreenImg.style.transform = `scale(${scale})`;
+            updateButtonVisibility(scale);
         });
+
+        function updateButtonVisibility(scale) {
+            if (scale === 1) {
+                zoomOutButton.disabled = true;
+            } else if (scale === 5) {
+                zoomInButton.disabled = true;
+            } else {
+                zoomInButton.disabled = false;
+                zoomOutButton.disabled = false;
+            }
+        }
+
+        updateButtonVisibility(1); // Initial button state
     </script>
 
 </body>
