@@ -56,14 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const collapsibles = document.querySelectorAll('.collapsible');
     collapsibles.forEach(button => {
         button.addEventListener('click', function() {
-            this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
             const content = document.getElementById(this.getAttribute('aria-controls'));
-            if (content.style.maxHeight) {
-                content.style.padding = '0 18px'; // Collapse padding first
-                content.style.maxHeight = null;
-            } else {
-                content.style.padding = '1rem 18px'; // Expand padding
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+            // Toggle aria-expanded attribute
+            this.setAttribute('aria-expanded', !isExpanded);
+
+            if (!isExpanded) {
+                // Expand: Set padding first, then max-height to trigger transition
+                content.style.padding = '1rem 18px';
                 content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                // Collapse: Set max-height to null first, then padding
+                // Setting max-height to null allows the CSS rule (max-height: 0) to take effect
+                content.style.maxHeight = null;
+                // We might need a slight delay for padding if the transition looks abrupt,
+                // but let's try setting it directly first.
+                content.style.padding = '0 18px';
             }
         });
     });
