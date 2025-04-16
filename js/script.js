@@ -1,52 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Debounce Function ---
+    // Limits the rate at which a function can fire.
+    function debounce(func, wait = 15, immediate = false) {
+        let timeout;
+        return function() {
+            const context = this, args = arguments;
+            const later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            const callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
     // --- Navbar Active State on Scroll ---
-    const sections = document.querySelectorAll('.container[id]'); // Select containers with IDs
+    const sections = document.querySelectorAll('.container[id]');
     const navLinks = document.querySelectorAll('.navbar a');
+    const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 70; // Get navbar height or default
 
     const activateNavLink = () => {
         let currentSectionId = '';
+        const scrollPosition = window.scrollY;
+
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100; // Adjust offset as needed
-            const sectionHeight = section.offsetHeight;
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            // Adjust offset calculation to be more precise relative to navbar height
+            const sectionTop = section.offsetTop - navbarHeight - 10; // Add a small buffer
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                 currentSectionId = section.getAttribute('id');
             }
         });
 
-        // If scrolled to the top or bottom, handle edge cases
-        if (window.scrollY < sections[0].offsetTop - 100) {
-            currentSectionId = sections[0].getAttribute('id');
-        } else if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-            // Check if near the bottom, activate the last section's link
-            currentSectionId = sections[sections.length - 1].getAttribute('id');
+        // Handle edge cases more robustly
+        if (!currentSectionId) {
+            if (scrollPosition < sections[0].offsetTop - navbarHeight - 10) {
+                currentSectionId = sections[0].getAttribute('id');
+            } else if (window.innerHeight + scrollPosition >= document.body.offsetHeight - 50) {
+                currentSectionId = sections[sections.length - 1].getAttribute('id');
+            }
         }
 
         navLinks.forEach(link => {
             link.classList.remove('active');
+            // Ensure link has href and it matches
             if (link.getAttribute('href') === `#${currentSectionId}`) {
                 link.classList.add('active');
             }
         });
     };
 
-    window.addEventListener('scroll', activateNavLink);
-    activateNavLink(); // Initial check on load
+    // Use debounced version for scroll event
+    window.addEventListener('scroll', debounce(activateNavLink, 50)); // Debounce scroll handler
+    activateNavLink(); // Initial check
 
-    // --- Smooth Scrolling --- (Optional, browser support is good now, but can be added)
+    // --- Smooth Scrolling ---
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            if (href.startsWith('#')) {
+            // Check if it's an internal link
+            if (href && href.startsWith('#')) {
                 e.preventDefault();
                 const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 70; // Adjust for sticky navbar height
+                    // Calculate precise offset based on actual navbar height
+                    const offsetTop = targetElement.offsetTop - navbarHeight;
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
                     });
+                    // Optionally close mobile nav if implemented
                 }
             }
         });
@@ -56,23 +84,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const collapsibles = document.querySelectorAll('.collapsible');
     collapsibles.forEach(button => {
         button.addEventListener('click', function() {
-            const content = document.getElementById(this.getAttribute('aria-controls'));
+            const contentId = this.getAttribute('aria-controls');
+            const content = document.getElementById(contentId);
+            if (!content) return; // Exit if content element not found
+
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
-            // Toggle aria-expanded attribute
             this.setAttribute('aria-expanded', !isExpanded);
 
             if (!isExpanded) {
-                // Expand: Set padding first, then max-height to trigger transition
-                content.style.padding = '1rem 18px';
+                // Expand: Set max-height after a tiny delay to allow CSS to apply initial state if needed
+                // Set padding before height for smoother visual transition
+                content.style.paddingTop = '1rem';
+                content.style.paddingBottom = '1rem';
                 content.style.maxHeight = content.scrollHeight + "px";
+                // Add overflow visible briefly during expansion if content jumps
+                // setTimeout(() => { content.style.overflow = 'visible'; }, 300); // Adjust timing based on CSS transition duration
             } else {
-                // Collapse: Set max-height to null first, then padding
-                // Setting max-height to null allows the CSS rule (max-height: 0) to take effect
-                content.style.maxHeight = null;
-                // We might need a slight delay for padding if the transition looks abrupt,
-                // but let's try setting it directly first.
-                content.style.padding = '0 18px';
+                // Collapse: Set overflow hidden first, then height and padding
+                // content.style.overflow = 'hidden';
+                content.style.maxHeight = '0';
+                // Remove padding after height transition starts
+                content.style.paddingTop = '0';
+                content.style.paddingBottom = '0';
             }
         });
     });
@@ -84,10 +118,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageContainers = document.querySelectorAll('.image-container');
     const zoomInBtn = document.getElementById('zoom-in');
     const zoomOutBtn = document.getElementById('zoom-out');
+    const closeBtn = document.getElementById('close-fullscreen-btn'); // Get close button
+
+    // Check if essential overlay elements exist
+    if (!overlay || !fullscreenImg || !fullscreenCaption || !zoomInBtn || !zoomOutBtn || !closeBtn) {
+        console.error("Fullscreen overlay elements not found. Feature disabled.");
+        return; // Don't proceed if elements are missing
+    }
 
     let currentZoom = 1;
     let isDragging = false;
     let startX, startY, translateX = 0, translateY = 0;
+    const MAX_ZOOM = 5;
+    const MIN_ZOOM = 0.5;
+    const ZOOM_STEP = 1.3;
 
     imageContainers.forEach(container => {
         const img = container.querySelector('img');
@@ -97,35 +141,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 fullscreenImg.src = img.src;
                 fullscreenCaption.textContent = caption ? caption.textContent : '';
                 overlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                document.body.style.overflow = 'hidden';
                 resetZoomAndPan();
+                // Add listener for close button inside the overlay logic
+                closeBtn.addEventListener('click', closeOverlay);
             });
         }
     });
 
     const closeOverlay = () => {
         overlay.style.display = 'none';
-        fullscreenImg.src = ''; // Clear image source
+        fullscreenImg.src = '';
         fullscreenCaption.textContent = '';
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = '';
+        // Remove listener to prevent memory leaks if overlay is opened multiple times
+        closeBtn.removeEventListener('click', closeOverlay);
     };
 
-    // Close overlay by clicking outside the image (on the overlay itself)
     overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) { // Ensure click is on the overlay, not the image/buttons
+        if (e.target === overlay) {
             closeOverlay();
         }
     });
 
-    // Close with Escape key (handled in CSS/HTML via button, but good practice)
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && overlay.style.display === 'flex') {
             closeOverlay();
         }
     });
 
-    // --- Zoom Functionality ---
     const applyTransform = () => {
+        // Clamp translation to prevent panning image completely out of view
+        const imgWidth = fullscreenImg.offsetWidth * currentZoom;
+        const imgHeight = fullscreenImg.offsetHeight * currentZoom;
+        const overlayWidth = overlay.clientWidth;
+        const overlayHeight = overlay.clientHeight;
+
+        // Calculate max allowed translation offsets
+        // Allow panning until only a small part (e.g., 100px) of the image is visible
+        const maxTranslateX = Math.max(0, (imgWidth - overlayWidth) / 2 + overlayWidth * 0.1);
+        const minTranslateX = -maxTranslateX;
+        const maxTranslateY = Math.max(0, (imgHeight - overlayHeight) / 2 + overlayHeight * 0.1);
+        const minTranslateY = -maxTranslateY;
+
+        // Clamp the current translation values
+        translateX = Math.max(minTranslateX, Math.min(maxTranslateX, translateX));
+        translateY = Math.max(minTranslateY, Math.min(maxTranslateY, translateY));
+
         fullscreenImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
     };
 
@@ -135,88 +197,107 @@ document.addEventListener('DOMContentLoaded', () => {
         translateY = 0;
         applyTransform();
         fullscreenImg.style.cursor = 'grab';
+        fullscreenImg.classList.remove('grabbing');
     };
 
     zoomInBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent overlay click
-        currentZoom = Math.min(currentZoom * 1.3, 5); // Limit max zoom
+        e.stopPropagation();
+        currentZoom = Math.min(currentZoom * ZOOM_STEP, MAX_ZOOM);
         applyTransform();
     });
 
     zoomOutBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent overlay click
-        currentZoom = Math.max(currentZoom / 1.3, 0.5); // Limit min zoom
-        applyTransform();
+        e.stopPropagation();
+        currentZoom = Math.max(currentZoom / ZOOM_STEP, MIN_ZOOM);
+        // If zoom is close to 1, reset pan
+        if (Math.abs(currentZoom - 1) < 0.05) {
+             resetZoomAndPan();
+        } else {
+            applyTransform();
+        }
     });
 
-    // --- Pan Functionality ---
     fullscreenImg.addEventListener('mousedown', (e) => {
-        if (currentZoom <= 1) return; // Only allow panning when zoomed
-        e.preventDefault(); // Prevent default image dragging
+        if (currentZoom <= 1) return;
+        e.preventDefault();
         isDragging = true;
+        // Calculate start relative to the image's current translation
         startX = e.pageX - translateX;
         startY = e.pageY - translateY;
         fullscreenImg.style.cursor = 'grabbing';
-        fullscreenImg.classList.add('grabbing'); // Add class for potential styling
+        fullscreenImg.classList.add('grabbing');
     });
 
     document.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         e.preventDefault();
+        // Calculate new translation based on mouse movement
         translateX = e.pageX - startX;
         translateY = e.pageY - startY;
-        applyTransform();
+        applyTransform(); // applyTransform will clamp the values
     });
 
-    document.addEventListener('mouseup', () => {
+    // Use a shared mouseup/mouseleave handler
+    const endDrag = () => {
         if (isDragging) {
             isDragging = false;
             fullscreenImg.style.cursor = 'grab';
             fullscreenImg.classList.remove('grabbing');
         }
-    });
+    };
+    document.addEventListener('mouseup', endDrag);
+    document.addEventListener('mouseleave', endDrag); // Handle mouse leaving the window
 
-    // Prevent dragging state sticking if mouse leaves window
-    document.addEventListener('mouseleave', () => {
-        if (isDragging) {
-            isDragging = false;
-            fullscreenImg.style.cursor = 'grab';
-            fullscreenImg.classList.remove('grabbing');
-        }
-    });
-
-    // Handle wheel zoom (optional)
     fullscreenImg.addEventListener('wheel', (e) => {
         if (overlay.style.display !== 'flex') return;
         e.preventDefault();
         e.stopPropagation();
-        const delta = e.deltaY > 0 ? -0.1 : 0.1; // Zoom direction
-        const zoomFactor = 1 + delta;
-        const newZoom = Math.max(0.5, Math.min(currentZoom * zoomFactor, 5)); // Apply limits
 
-        // Adjust translate to zoom towards mouse pointer
-        const rect = fullscreenImg.getBoundingClientRect();
-        const offsetX = (e.clientX - rect.left) / currentZoom; // Mouse position relative to image, scaled
-        const offsetY = (e.clientY - rect.top) / currentZoom;
+        const delta = e.deltaY > 0 ? -1 : 1; // Direction (-1 for zoom out, 1 for zoom in)
+        const zoomFactor = delta > 0 ? ZOOM_STEP : 1 / ZOOM_STEP;
+        const newZoom = Math.max(MIN_ZOOM, Math.min(currentZoom * zoomFactor, MAX_ZOOM));
 
-        translateX -= offsetX * (newZoom - currentZoom);
-        translateY -= offsetY * (newZoom - currentZoom);
+        // Calculate mouse position relative to the overlay
+        const overlayRect = overlay.getBoundingClientRect();
+        const mouseX = e.clientX - overlayRect.left;
+        const mouseY = e.clientY - overlayRect.top;
+
+        // Calculate the point on the image under the mouse before zoom
+        const imgX = (mouseX - translateX) / currentZoom;
+        const imgY = (mouseY - translateY) / currentZoom;
+
+        // Calculate the new translation to keep the point under the mouse
+        translateX = mouseX - imgX * newZoom;
+        translateY = mouseY - imgY * newZoom;
 
         currentZoom = newZoom;
-        applyTransform();
+
+        // If zoom is very close to 1 after wheel zoom, reset pan
+        if (Math.abs(currentZoom - 1) < 0.05) {
+             resetZoomAndPan();
+        } else {
+            applyTransform(); // applyTransform will clamp translation
+        }
+
     }, { passive: false });
 
 });
 
-// Make closeOverlay globally accessible if called directly from HTML onclick
+// Keep global closeOverlay function for HTML onclick, but add checks
 function closeOverlay() {
     const overlay = document.getElementById('fullscreen-overlay');
     const fullscreenImg = document.getElementById('fullscreen-img');
     const fullscreenCaption = document.getElementById('fullscreen-caption');
-    if (overlay) {
+    const closeBtn = document.getElementById('close-fullscreen-btn');
+
+    if (overlay && overlay.style.display !== 'none') {
         overlay.style.display = 'none';
-        if (fullscreenImg) fullscreenImg.src = '';
-        if (fullscreenCaption) fullscreenCaption.textContent = '';
+        if (fullscreenImg) { fullscreenImg.src = ''; } // Re-add curly braces
+        if (fullscreenCaption) { fullscreenCaption.textContent = ''; } // Re-add curly braces
         document.body.style.overflow = '';
+        // Attempt to remove listener if button exists
+        if (closeBtn) {
+             closeBtn.removeEventListener('click', closeOverlay);
+        }
     }
 }
