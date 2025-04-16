@@ -6,6 +6,7 @@
     <title>Salifort Motors: Keeping Our People Happy</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 </head>
 <body>
 
@@ -23,14 +24,14 @@
     </nav>
 
     <main>
-        <section id="story" class="container slide-in" aria-labelledby="story-heading">
+        <section id="story" class="container section" data-aos="fade-up" aria-labelledby="story-heading">
             <h2 id="story-heading">The Story: Why Employee Happiness Matters More Than Ever</h2>
             <p>Hi, I'm <b>Tobin Zolkowski</b>. Welcome! Ever wonder what makes a workplace truly great? It's the people, right? At Salifort Motors, we value our team immensely. But recently, we noticed something concerning: more talented folks were heading for the exit than we were comfortable with. Losing great employees isn't just a line item on a budget for hiring replacements; it's a ripple effect. It impacts team morale, slows down innovation, and means losing valuable experience.</p>
             <p>So, we decided to become data detectives! We gathered information (completely anonymous, of course) about our employees' experiences – things like their satisfaction levels, workload, time with the company, and growth opportunities. Our mission? To uncover the hidden patterns and understand the real story behind <i>why</i> some people thrive and stay long-term, while others decide it's time to move on.</p>
             <p>Think of it like listening carefully to thousands of voices at once, finding the common threads in their stories. Our ultimate goal is to use these insights not just to reduce turnover, but to proactively build a more supportive, engaging, and ultimately happier workplace for everyone at Salifort Motors. Because when our people succeed, the whole company succeeds.</p>
         </section>
 
-        <section id="clues" class="container" data-aos="fade-up" aria-labelledby="clues-heading">
+        <section id="clues" class="container section" data-aos="fade-up" aria-labelledby="clues-heading">
             <h2 id="clues-heading">Finding Clues: Listening to the Data's Whispers</h2>
             <p>Our investigation started by carefully examining the experiences of <span class="highlight">15,000 employees</span>. We looked at ten key pieces of the puzzle, including:</p>
             <ul>
@@ -138,7 +139,7 @@
             <p>Here's a curveball from the data: employees who experienced a work accident were actually <span class="highlight">less likely to leave</span>. Safety is paramount, always. But this unexpected finding suggests that perhaps the support systems that kick in after an incident, or other factors, play a role in these employees choosing to stay.</p>
         </section>
 
-        <section id="predictions" class="container" data-aos="fade-up" aria-labelledby="predictions-heading">
+        <section id="predictions" class="container section" data-aos="fade-up" aria-labelledby="predictions-heading">
             <h2 id="predictions-heading">Making Predictions: Building an Early Warning System</h2>
             <p>Spotting clues in past data is insightful, but what if we could anticipate the future? The next step was to build a predictive tool – think of it as an early warning system – that could help us identify employees who might be feeling unhappy or considering leaving, *before* they make the decision. This allows us to offer support proactively.</p>
             <h3>Testing Our Crystal Balls: Which Predictor Works Best?</h3>
@@ -206,7 +207,7 @@
             <p>While the simple logic method gave us a basic understanding, the advanced "Teamwork Trees" and "Smart Boosting" methods were in a different league. Because "Smart Boosting" (<span class="highlight">XGBoost</span>) consistently demonstrated slightly better accuracy and, crucially, a better ability to identify employees who might leave (higher recall), we selected it as our go-to early warning system for Salifort Motors.</p>
         </section>
 
-        <section id="solutions" class="container" data-aos="fade-up" aria-labelledby="solutions-heading">
+        <section id="solutions" class="container section" data-aos="fade-up" aria-labelledby="solutions-heading">
             <h2 id="solutions-heading">Solutions: Turning Insights into Action for a Happier Workplace</h2>
             <p>Okay, we've listened to the data, found the clues, and even built an early warning system. Now for the most important part: what do we *do* about it? How can Salifort Motors use these insights to build a workplace where people feel valued, supported, and excited to stay?</p>
             <p><strong>What We Learned (The Key Takeaways Summarized):</strong></p>
@@ -236,7 +237,7 @@
             <p>By taking these steps, Salifort Motors can move from simply reacting to turnover to proactively building an environment where talented people choose to build their careers.</p>
         </section>
 
-        <section id="about" class="container slide-in" aria-labelledby="about-heading">
+        <section id="about" class="container section" data-aos="fade-up" aria-labelledby="about-heading">
             <h2 id="about-heading">About This Project & The Data Detective</h2>
             <p>This project wasn't just about crunching numbers; it was about translating data into a human story and actionable strategies for Salifort Motors' HR team and leadership. It demonstrates how data analysis, when combined with practical business thinking, can lead to meaningful improvements in the workplace.</p>
             <p>I'm Tobin Zolkowski, the data detective behind this analysis. I'm passionate about using data to uncover insights and solve real-world problems. If you're curious about the technical nitty-gritty (the Python code, model details, etc.), feel free to explore the full analysis on my GitHub: <a href="https://github.com/tzolkowski96/tzolkowski96/tree/main/Employee-Churn-Prediction" target="_blank" rel="noopener noreferrer">Salifort Employee Churn Analysis</a>.</p>
@@ -259,6 +260,16 @@
     </div>
 
     <script src="js/script.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({
+          duration: 800, // Animation duration
+          once: true, // Only animate once
+          offset: 100 // Trigger animation slightly before element is in view
+         });
+      });
+    </script>
 
 </body>
 </html>
