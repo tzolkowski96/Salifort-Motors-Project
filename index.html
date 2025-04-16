@@ -9,253 +9,247 @@
 </head>
 <body>
 
-    <div class="header fade-in">
+    <header class="header fade-in">
         <h1>Salifort Motors: Keeping Our People Happy</h1>
         <p><i>Using Data to Understand Why Great Employees Stay (and Why Some Leave)</i></p>
-    </div>
+    </header>
 
-    <div class="navbar">
+    <nav class="navbar">
         <a href="#story" class="active">The Story</a>
         <a href="#clues">Finding Clues</a>
         <a href="#predictions">Making Predictions</a>
         <a href="#solutions">Solutions</a>
         <a href="#about">About</a>
-    </div>
+    </nav>
 
-    <div id="story" class="container slide-in">
-        <div class="section">
-            <h2>The Story: Why Employee Happiness Matters</h2>
-            <p>Hi, I'm <b>Tobin Zolkowski</b>. Welcome! This project explores a challenge many companies face: keeping talented employees happy and engaged. At Salifort Motors, we noticed more people were leaving than we'd like. Losing good people isn't just about hiring costs; it affects team spirit and slows down progress.</p>
-            <p>So, we put on our detective hats! Using data about our employees, we looked for patterns to understand <i>why</i> people stay and <i>why</i> they might leave. Think of it as using clues hidden in numbers to build a better, more supportive workplace.</p>
-            <p>Our goal? To use these insights to help Salifort Motors become an even better place to work, reducing turnover and boosting overall success.</p>
-        </div>
-    </div>
+    <main>
+        <section id="story" class="container slide-in" aria-labelledby="story-heading">
+            <h2 id="story-heading">The Story: Why Employee Happiness Matters More Than Ever</h2>
+            <p>Hi, I'm <b>Tobin Zolkowski</b>. Welcome! Ever wonder what makes a workplace truly great? It's the people, right? At Salifort Motors, we value our team immensely. But recently, we noticed something concerning: more talented folks were heading for the exit than we were comfortable with. Losing great employees isn't just a line item on a budget for hiring replacements; it's a ripple effect. It impacts team morale, slows down innovation, and means losing valuable experience.</p>
+            <p>So, we decided to become data detectives! We gathered information (completely anonymous, of course) about our employees' experiences – things like their satisfaction levels, workload, time with the company, and growth opportunities. Our mission? To uncover the hidden patterns and understand the real story behind <i>why</i> some people thrive and stay long-term, while others decide it's time to move on.</p>
+            <p>Think of it like listening carefully to thousands of voices at once, finding the common threads in their stories. Our ultimate goal is to use these insights not just to reduce turnover, but to proactively build a more supportive, engaging, and ultimately happier workplace for everyone at Salifort Motors. Because when our people succeed, the whole company succeeds.</p>
+        </section>
 
-    <div id="clues" class="container" data-aos="fade-up">
-        <div class="section">
-            <h2>Finding Clues: Listening to the Data</h2>
-            <p>We started by looking at information from <span class="highlight">15,000 employees</span>, focusing on 10 key areas like:</p>
+        <section id="clues" class="container" data-aos="fade-up" aria-labelledby="clues-heading">
+            <h2 id="clues-heading">Finding Clues: Listening to the Data's Whispers</h2>
+            <p>Our investigation started by carefully examining the experiences of <span class="highlight">15,000 employees</span>. We looked at ten key pieces of the puzzle, including:</p>
             <ul>
-                <li><b>Happiness Level</b>: How satisfied were they?</li>
-                <li><b>Performance Score</b>: How did they do in reviews?</li>
-                <li><b>Project Load</b>: How many projects were they working on?</li>
-                <li><b>Work Hours</b>: How many hours did they typically work?</li>
-                <li><b>Time with Company</b>: How many years had they been at Salifort?</li>
-                <li><b>Workplace Safety</b>: Any accidents reported?</li>
-                <li><b>Left Company?</b>: Did they stay or leave? (This is what we wanted to understand!)</li>
-                <li><b>Recent Promotion?</b>: Were they promoted recently?</li>
-                <li><b>Team</b>: Which department did they belong to?</li>
-                <li><b>Pay Level</b>: Were they paid low, medium, or high compared to others?</li>
+                <li><b>Happiness Level (Satisfaction)</b>: On a scale, how content were people feeling? (A crucial clue!)</li>
+                <li><b>Performance Score (Last Evaluation)</b>: How did their recent performance review go?</li>
+                <li><b>Project Load (Number of Projects)</b>: Were they juggling a few key tasks or swimming in projects?</li>
+                <li><b>Work Hours (Average Monthly Hours)</b>: Were they working standard hours, or consistently burning the midnight oil?</li>
+                <li><b>Time with Company (Tenure)</b>: How many years had they dedicated to Salifort?</li>
+                <li><b>Workplace Safety (Work Accident)</b>: Had they unfortunately experienced an accident on the job?</li>
+                <li><b>Left Company?</b>: The big question – did they stay or did they go?</li>
+                <li><b>Recent Promotion? (Last 5 Years)</b>: Had they moved up the ladder recently?</li>
+                <li><b>Team (Department)</b>: Which part of the Salifort family did they belong to?</li>
+                <li><b>Pay Level (Salary)</b>: How did their compensation compare – low, medium, or high?</li>
             </ul>
             <button class="collapsible" aria-expanded="false" aria-controls="data-prep-content">Getting the Data Ready (A Quick Peek Behind the Scenes)</button>
-            <div class="content" id="data-prep-content">
-                <p>Before digging for clues, we tidied up the data. This meant making sure everything was consistent and translating things like 'Department' and 'Pay Level' into a format our analysis tools could easily understand.</p>
+            <div class="content" id="data-prep-content" hidden>
+                <p>Before we could find the real insights, we had to do some digital housekeeping. This involved cleaning up the data, making sure everything was consistent, and translating categories like 'Department' and 'Salary' into a language our analysis tools could understand. It's like organizing your detective notes before you start connecting the dots!</p>
             </div>
 
-            <h4>Visual Clues: What the Charts Told Us</h4>
-            <p>Pictures often tell a story better than just numbers. Here are some key discoveries:</p>
+            <h4>Visual Clues: What the Charts Revealed</h4>
+            <p>Numbers can be dry, but charts bring the story to life! We created visualizations to spot trends and patterns. Here's what jumped out:</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_1.png" alt="Boxplot of Tenure" loading="lazy">
-                <div class="caption">Chart 1: How Long People Stay</div>
-                <span class="tooltiptext">Most employees stay around 3 years.</span>
-            </div>
-            <p>This chart shows that <span class="highlight">3 years is a common length of time</span> for employees at Salifort. Many leave between their 2nd and 4th year. This tells us the 3-year mark is a critical time to focus on keeping people happy.</p>
+            <figure class="image-container tooltip">
+                <img src="images/image_1.png" alt="Boxplot showing employee tenure distribution. Median tenure is 3 years, with many leaving between years 2 and 4." loading="lazy">
+                <figcaption class="caption">Chart 1: The Salifort Journey - How Long Do People Stay?</figcaption>
+                <span class="tooltiptext">Most employees stay around 3 years. The 2-4 year mark is key.</span>
+            </figure>
+            <p>This chart tells us about the typical employee journey length. The sweet spot seems to be <span class="highlight">around 3 years</span>. Notice how many people move on between their second and fourth year? This isn't necessarily bad, but it signals that this timeframe is a critical window for ensuring employees feel valued and see a future here.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_2.png" alt="Correlation Heatmap" loading="lazy">
-                <div class="caption">Chart 2: Connecting the Dots</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_2.png" alt="Correlation heatmap showing relationships between employee factors. Strong negative correlation between satisfaction level and leaving." loading="lazy">
+                <figcaption class="caption">Chart 2: Connecting the Dots - What Factors are Linked?</figcaption>
                 <span class="tooltiptext">Shows links between different factors. Unhappiness is strongly linked to leaving.</span>
-            </div>
-            <p>This "heatmap" shows connections. The most important clue? <span class="highlight">Unhappiness is strongly linked to leaving</span>. We also saw that people working on more projects often had higher performance scores and worked more hours – suggesting our high performers might be carrying a heavy load.</p>
+            </figure>
+            <p>Think of this "heatmap" like a relationship map. The darker the color, the stronger the connection. The most striking connection? <span class="highlight">Unhappiness (low satisfaction) has a strong link to employees leaving</span>. No huge surprise, but the data confirms it loud and clear. We also saw interesting links: people handling more projects often scored higher in reviews and worked longer hours. This hints that our top performers might be feeling the strain.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_3.png" alt="Employees Leaving by Department" loading="lazy">
-                <div class="caption">Chart 3: Leaving by Team</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_3.png" alt="Bar chart showing number of employees who left by department. Sales, Technical, and Support departments have the highest counts." loading="lazy">
+                <figcaption class="caption">Chart 3: Where Are People Leaving From? (Team View)</figcaption>
                 <span class="tooltiptext">Sales, Technical, and Support teams saw the most departures.</span>
-            </div>
-            <p>Looking at different teams, we saw the <span class="highlight">Sales, Technical, and Support departments had the highest number of people leaving</span>. While these are large teams, it suggests we might need to look closer at the specific challenges within these groups.</p>
+            </figure>
+            <p>When we looked at departures by department, the <span class="highlight">Sales, Technical, and Support teams stood out</span>. Now, these are large teams, so more departures are expected. However, it does suggest we should perhaps look closer at the unique pressures or opportunities within these specific groups.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_4.png" alt="Employees Leaving by Salary Level" loading="lazy">
-                <div class="caption">Chart 4: Does Pay Matter?</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_4.png" alt="Bar chart comparing employees who left vs. stayed across salary levels. Significantly more low-salary employees left compared to medium or high." loading="lazy">
+                <figcaption class="caption">Chart 4: Does Pay Make a Difference?</figcaption>
                 <span class="tooltiptext">Yes! Lower pay is linked to higher chances of leaving.</span>
-            </div>
-            <p>This chart is clear: <span class="highlight">employees earning lower salaries were much more likely to leave</span> than those earning medium or high salaries. Pay is definitely a big factor.</p>
+            </figure>
+            <p>Money talks, and the data listens. This chart paints a clear picture: <span class="highlight">employees in the lower salary bracket were significantly more likely to leave</span> compared to their colleagues earning medium or high salaries. Compensation is undeniably a major factor in retention.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_12.png" alt="Distribution of Salary Levels" loading="lazy">
-                <div class="caption">Chart 5: How Pay is Spread Out</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_12.png" alt="Bar chart showing the distribution of employees across low, medium, and high salary levels. Most employees are in the low and medium bands." loading="lazy">
+                <figcaption class="caption">Chart 5: The Salary Landscape at Salifort</figcaption>
                 <span class="tooltiptext">Most employees are in the low or medium pay bands.</span>
-            </div>
-            <p>Adding to the story, this chart shows that <span class="highlight">most Salifort employees are in the low and medium pay groups</span>. This helps explain why pay seems to be a major reason for people leaving.</p>
+            </figure>
+            <p>This chart adds important context to the previous one. It shows that <span class="highlight">a large portion of Salifort's workforce falls into the low and medium salary categories</span>. This distribution helps explain *why* pay appears to be such a significant driver of turnover – it affects a large number of our people.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_5.png" alt="Distribution of Satisfaction Levels" loading="lazy">
-                <div class="caption">Chart 6: Employee Happiness Levels</div>
-                <span class="tooltiptext">Shows two main groups: very unhappy and quite happy.</span>
-            </div>
-            <p>Employee happiness isn't straightforward. We saw <span class="highlight">two main groups: one group very unhappy, and another group quite satisfied</span>. This split suggests we need different approaches for different employees.</p>
+            <figure class="image-container tooltip">
+                <img src="images/image_5.png" alt="Histogram of employee satisfaction levels. Shows a bimodal distribution with peaks at low satisfaction (around 0.1 and 0.4) and high satisfaction (around 0.7-1.0)." loading="lazy">
+                <figcaption class="caption">Chart 6: The Mood Map - How Happy Are Our Teams?</figcaption>
+                <span class="tooltiptext">Shows two main groups: very unhappy and quite happy. Few in the middle.</span>
+            </figure>
+            <p>Employee happiness isn't a simple bell curve here. We see <span class="highlight">two distinct groups: a significant cluster of very unhappy employees, and another large group who are quite satisfied</span>. There aren't many people feeling just "okay." This polarization suggests we need tailored strategies – what works for the happy group might not resonate with the unhappy one.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_6.png" alt="Distribution of Last Evaluation Scores" loading="lazy">
-                <div class="caption">Chart 7: Performance Review Scores</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_6.png" alt="Histogram of last evaluation scores. Shows a bimodal distribution with peaks around 0.5-0.6 and near 1.0." loading="lazy">
+                <figcaption class="caption">Chart 7: Performance Snapshot - How Are Reviews Looking?</figcaption>
                 <span class="tooltiptext">Scores often cluster around average and high marks.</span>
-            </div>
-            <p>Performance scores also showed patterns, with many employees scoring <span class="highlight">around the middle or towards the higher end</span>. How people feel about their performance reviews could be linked to their happiness and workload.</p>
+            </figure>
+            <p>Performance reviews also showed interesting clusters. Many employees received scores <span class="highlight">around the middle range, while another group scored very highly</span>. How people perceive their performance and the feedback process could be intertwined with their overall satisfaction and workload.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_7.png" alt="Number of Projects Undertaken by Employees" loading="lazy">
-                <div class="caption">Chart 8: How Many Projects?</div>
-                <span class="tooltiptext">Most people handle 3-4 projects.</span>
-            </div>
-            <p>Most employees juggle <span class="highlight">3 or 4 projects at once</span>. Some have fewer, some have many more (up to 7!). Finding the right balance is key – too few projects might lead to boredom, while too many can cause burnout.</p>
+            <figure class="image-container tooltip">
+                <img src="images/image_7.png" alt="Histogram showing the number of projects employees work on. Most common numbers are 3 and 4 projects." loading="lazy">
+                <figcaption class="caption">Chart 8: Juggling Act - How Many Projects Per Person?</figcaption>
+                <span class="tooltiptext">Most people handle 3-4 projects. Some handle many more (up to 7!).</span>
+            </figure>
+            <p>What's a typical workload like? Most employees are juggling <span class="highlight">3 or 4 projects simultaneously</span>. However, some are focused on fewer, while others are tackling a demanding 6 or 7! Finding the sweet spot is crucial. Too few projects might lead to boredom, but too many is a recipe for burnout.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_8.png" alt="Distribution of Average Monthly Hours" loading="lazy">
-                <div class="caption">Chart 9: Working Hours</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_8.png" alt="Histogram of average monthly hours worked. Shows two main groups: one around 150 hours/month, another around 220-270 hours/month." loading="lazy">
+                <figcaption class="caption">Chart 9: Punching the Clock - What Do Work Hours Look Like?</figcaption>
                 <span class="tooltiptext">Shows two groups: one working standard hours, another working very long hours.</span>
-            </div>
-            <p>Working hours varied. We saw one group working typical hours (around <span class="highlight">150/month</span>) and another working significantly more (<span class="highlight">220-270/month</span>). Long hours could be a sign of burnout risk.</p>
+            </figure>
+            <p>Work hours tell a tale of two cities. We see one group working fairly standard hours (around <span class="highlight">150 per month</span>), but another group consistently putting in significantly more time (<span class="highlight">220-270 hours per month</span>). These long hours could be a major red flag for potential burnout and dissatisfaction.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_9.png" alt="Number of Years Employees Have Spent with the Company" loading="lazy">
-                <div class="caption">Chart 10: Years at Salifort (Another Look)</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_9.png" alt="Histogram showing employee tenure in years. The highest bar is at 3 years, with counts decreasing significantly after 5 years." loading="lazy">
+                <figcaption class="caption">Chart 10: Years of Service - The 3-Year Milestone</figcaption>
                 <span class="tooltiptext">Confirms the 3-year mark is key, with fewer staying past 5 years.</span>
-            </div>
-            <p>This chart confirms what we saw earlier: the <span class="highlight">highest number of employees have been here for 3 years</span>. Fewer employees stay beyond the 5-year mark, highlighting a challenge in long-term retention.</p>
+            </figure>
+            <p>This chart reinforces our earlier finding about the employee journey. The <span class="highlight">most common tenure is 3 years</span>. After the 5-year mark, the numbers drop off noticeably. This highlights a potential challenge in retaining experienced employees long-term.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_10.png" alt="Promotions in the Last 5 Years vs. Leaving" loading="lazy">
-                <div class="caption">Chart 11: Promotions Keep People!</div>
-                <span class="tooltiptext">Employees who get promoted rarely leave.</span>
-            </div>
-            <p>This is a powerful clue: <span class="highlight">getting promoted makes a huge difference</span>. Very few employees who received a promotion in the last 5 years left the company. This shows how important growth opportunities are.</p>
+            <figure class="image-container tooltip">
+                <img src="images/image_10.png" alt="Stacked bar chart comparing promotion status (yes/no in last 5 years) for employees who left vs. stayed. Very few promoted employees left." loading="lazy">
+                <figcaption class="caption">Chart 11: The Power of Promotion!</figcaption>
+                <span class="tooltiptext">Employees who get promoted rarely leave. Growth matters!</span>
+            </figure>
+            <p>This clue is incredibly powerful. Look closely: <span class="highlight">employees who received a promotion within the last 5 years almost never left the company</span>. It's a tiny orange sliver! This clearly demonstrates how vital growth opportunities and feeling valued through advancement are for retention.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_11.png" alt="Work Accidents vs. Leaving" loading="lazy">
-                <div class="caption">Chart 12: Workplace Accidents & Staying</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_11.png" alt="Stacked bar chart comparing work accident status (yes/no) for employees who left vs. stayed. A higher proportion of those who stayed had an accident." loading="lazy">
+                <figcaption class="caption">Chart 12: An Unexpected Finding - Accidents & Staying</figcaption>
                 <span class="tooltiptext">Surprisingly, those with accidents were less likely to leave.</span>
-            </div>
-            <p>Here's a surprise: employees who had a work accident were actually <span class="highlight">less likely to leave</span>. While safety is always crucial, this suggests accidents themselves aren't driving people away – perhaps other support systems kick in.</p>
-        </div>
-    </div>
+            </figure>
+            <p>Here's a curveball from the data: employees who experienced a work accident were actually <span class="highlight">less likely to leave</span>. Safety is paramount, always. But this unexpected finding suggests that perhaps the support systems that kick in after an incident, or other factors, play a role in these employees choosing to stay.</p>
+        </section>
 
-    <div id="predictions" class="container" data-aos="fade-up">
-        <div class="section">
-            <h2>Making Predictions: Building a Crystal Ball</h2>
-            <p>Finding clues was the first step. Next, we wanted to build a tool – like a data crystal ball – that could help predict which employees might be unhappy or thinking about leaving <i>before</i> it happens. We tested a few different approaches.</p>
-            <h3>Testing Our Crystal Balls</h3>
-            <p>We used three methods to see which could predict employee departures most accurately:</p>
-            <h4>Method 1: Simple Logic (Logistic Regression)</h4>
+        <section id="predictions" class="container" data-aos="fade-up" aria-labelledby="predictions-heading">
+            <h2 id="predictions-heading">Making Predictions: Building an Early Warning System</h2>
+            <p>Spotting clues in past data is insightful, but what if we could anticipate the future? The next step was to build a predictive tool – think of it as an early warning system – that could help us identify employees who might be feeling unhappy or considering leaving, *before* they make the decision. This allows us to offer support proactively.</p>
+            <h3>Testing Our Crystal Balls: Which Predictor Works Best?</h3>
+            <p>We didn't just build one predictor; we tested three different methods, each with its own way of learning from the data, to see which one could most accurately flag potential departures:</p>
+            <h4>Method 1: Simple Logic (Logistic Regression) - The Straightforward Approach</h4>
             <ul>
-                <li>Accuracy (Overall Correctness): <span class="highlight">~78%</span></li>
-                <li>Precision (Correctly ID'ing Leavers): <span class="highlight">~73%</span></li>
-                <li>Recall (Finding Most Leavers): <span class="highlight">~69%</span></li>
-                <li>F1-Score (Balanced Score): <span class="highlight">~71%</span></li>
+                <li>Accuracy (Overall Correctness): <span class="highlight">~78%</span> - Okay, but not great.</li>
+                <li>Precision (Correctly ID'ing Leavers): <span class="highlight">~73%</span> - When it said someone might leave, it was right about 3 out of 4 times.</li>
+                <li>Recall (Finding Most Leavers): <span class="highlight">~69%</span> - Missed identifying nearly a third of those who actually left.</li>
+                <li>F1-Score (Balanced Score): <span class="highlight">~71%</span> - A decent balance, but room for improvement.</li>
             </ul>
-            <p><i>Result: A decent start, but it missed identifying many of the employees who actually left.</i></p>
-            <h4>Method 2: Teamwork Trees (Random Forest)</h4>
+            <p><i>Result: A reasonable starting point, but not sensitive enough. It let too many potential leavers slip through the cracks unnoticed.</i></p>
+            <h4>Method 2: Teamwork Trees (Random Forest) - The Collaborative Approach</h4>
             <ul>
-                <li>Accuracy: <span class="highlight">97.83%</span></li>
-                <li>Precision: <span class="highlight">98%</span></li>
-                <li>Recall: <span class="highlight">89%</span></li>
-                <li>F1-Score: <span class="highlight">93%</span></li>
+                <li>Accuracy: <span class="highlight">97.83%</span> - Highly accurate overall!</li>
+                <li>Precision: <span class="highlight">98%</span> - Very reliable when flagging someone as a potential leaver.</li>
+                <li>Recall: <span class="highlight">89%</span> - Successfully identified almost 9 out of 10 employees who left.</li>
+                <li>F1-Score: <span class="highlight">93%</span> - Excellent balance between precision and recall.</li>
             </ul>
-            <p><i>Result: Much better! Very accurate and good at finding most of the employees who left.</i></p>
-            <h4>Method 3: Smart Boosting (XGBoost)</h4>
+            <p><i>Result: A huge improvement! This method, which uses many decision trees working together, was much better at accurately identifying employees at risk.</i></p>
+            <h4>Method 3: Smart Boosting (XGBoost) - The Expert Learner Approach</h4>
             <ul>
-                <li>Accuracy: <span class="highlight">97.96%</span></li>
-                <li>Precision: <span class="highlight">98%</span></li>
-                <li>Recall: <span class="highlight">90%</span></li>
-                <li>F1-Score: <span class="highlight">94%</span></li>
+                <li>Accuracy: <span class="highlight">97.96%</span> - The top performer in overall accuracy!</li>
+                <li>Precision: <span class="highlight">98%</span> - Just as reliable as Random Forest.</li>
+                <li>Recall: <span class="highlight">90%</span> - Slightly better at catching potential leavers (identified 9 out of 10).</li>
+                <li>F1-Score: <span class="highlight">94%</span> - The best balance achieved.</li>
             </ul>
-            <p><i>Result: The best performer! Extremely accurate and slightly better at identifying employees likely to leave.</i></p>
+            <p><i>Result: Our champion! This advanced method learned from the data exceptionally well, proving slightly more effective at the crucial task of identifying employees who might need support.</i></p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_15.png" alt="ROC Curve" loading="lazy">
-                <div class="caption">Chart 13: How Well the Crystal Balls Work</div>
-                <span class="tooltiptext">Higher lines mean better predictions. Methods 2 & 3 are excellent.</span>
-            </div>
-            <p>This chart confirms that Methods 2 and 3 (the green and orange lines) were far superior at distinguishing between employees who stayed and those who left compared to Method 1 (blue line) or just guessing (dotted line). Both achieved a score (AUC) of <span class="highlight">0.98</span>, which is excellent.</p>
+            <figure class="image-container tooltip">
+                <img src="images/image_15.png" alt="ROC curves comparing Logistic Regression, Random Forest, and XGBoost models. Random Forest and XGBoost curves are very close to the top-left corner (AUC 0.98), indicating excellent performance, while Logistic Regression is lower." loading="lazy">
+                <figcaption class="caption">Chart 13: Grading the Crystal Balls (ROC Curve)</figcaption>
+                <span class="tooltiptext">Higher lines mean better predictions. Methods 2 & 3 (Green/Orange) hug the top-left = Excellent!</span>
+            </figure>
+            <p>This chart visually confirms the scores. The closer a line gets to the top-left corner, the better the predictor. See how the green (Random Forest) and orange (XGBoost) lines soar high? They achieved an Area Under the Curve (AUC) score of <span class="highlight">0.98</span> (where 1.0 is perfect), vastly outperforming the blue line (Logistic Regression) and the dotted line (pure chance). This gives us great confidence in our advanced methods.</p>
 
-            <h3>What Clues Did the Best Crystal Ball Use?</h3>
-            <button class="collapsible" aria-expanded="false" aria-controls="feature-importance-content">Which Clues Mattered Most?</button>
-            <div class="content" id="feature-importance-content">
-                <p>Knowing *which* clues our best prediction methods relied on helps us focus our efforts. Here's what mattered most:</p>
+            <h3>What Clues Did the Best Predictors Focus On?</h3>
+            <button class="collapsible" aria-expanded="false" aria-controls="feature-importance-content">Which Clues Mattered Most to the Predictors?</button>
+            <div class="content" id="feature-importance-content" hidden>
+                <p>Knowing *which* clues our best prediction methods relied on helps us focus our efforts. Both models highlighted similar key factors, though with slightly different emphasis:</p>
                 <ul>
-                    <li><b>Happiness Level:</b> Consistently a top factor. Unhappy employees are a major risk.</li>
-                    <li><b>Time with Company:</b> The 3-5 year mark is a critical period.</li>
-                    <li><b>Number of Projects:</b> Workload balance is crucial.</li>
-                    <li><b>Average Work Hours:</b> Long hours signal potential burnout.</li>
-                    <li><b>Performance Score:</b> How employees feel about their performance matters.</li>
+                    <li><b>Satisfaction Level:</b> The strongest predictor in the Random Forest model and second in XGBoost. Clearly critical. If someone's unhappy, the models paid attention.</li>
+                    <li><b>Tenure (Time with Company):</b> A top-3 factor in both models, emphasizing the importance of the 3-5 year period. How long someone has been here is a key indicator.</li>
+                    <li><b>Number of Projects:</b> Ranked #1 by XGBoost and #3 by Random Forest, indicating workload is a major factor. Feeling overloaded (or underutilized) matters.</li>
+                    <li><b>Average Monthly Hours:</b> Important for both models, linking long hours to turnover risk. Consistent overtime was a red flag for the predictors.</li>
+                    <li><b>Evaluation Score:</b> Also appeared in the top factors, suggesting performance perception and feedback play a role.</li>
                 </ul>
-                <p><i>Note: Both top methods pointed to similar clues, giving us confidence in these findings.</i></p>
+                <p><i>Note: The consistency across models gives us confidence that focusing on satisfaction, tenure, workload (projects/hours), and evaluation/growth is key. The predictors learned what our earlier charts suggested!</i></p>
             </div>
-            <div class="image-container tooltip">
-                <img src="images/image_13.png" alt="Top 10 Important Features - Random Forest" loading="lazy">
-                <div class="caption">Chart 14: Top Clues (Method 2: Teamwork Trees)</div>
+            <figure class="image-container tooltip">
+                <img src="images/image_13.png" alt="Bar chart showing top 10 feature importances for the Random Forest model. Satisfaction level, tenure, number of projects, evaluation score, and average monthly hours are the top 5." loading="lazy">
+                <figcaption class="caption">Chart 14: Top Clues for Teamwork Trees (Random Forest)</figcaption>
                 <span class="tooltiptext">Happiness level was the #1 clue for this method.</span>
-            </div>
-            <p>Chart 14 shows that Method 2 relied most heavily on <span class="highlight">happiness level</span>, followed by time with the company, project count, performance score, and work hours.</p>
+            </figure>
+            <p>Chart 14 breaks down what the "Teamwork Trees" method valued most. It overwhelmingly pointed to <span class="highlight">satisfaction level</span> as the number one predictor, followed by <span class="highlight">tenure (time with company)</span>, <span class="highlight">number of projects</span>, and <span class="highlight">average monthly hours</span>.</p>
 
-            <div class="image-container tooltip">
-                <img src="images/image_14.png" alt="Top 10 Important Features - XGBoost" loading="lazy">
-                <div class="caption">Chart 15: Top Clues (Method 3: Smart Boosting)</div>
-                <span class="tooltiptext">Project count and happiness were top clues here.</span>
-            </div>
-            <p>Chart 15 shows our best method (Method 3) also valued these clues highly, ranking <span class="highlight">project count</span> and <span class="highlight">happiness level</span> as extremely important, along with time at company, work hours, and performance score.</p>
+            <figure class="image-container tooltip">
+                <img src="images/image_14.png" alt="Bar chart showing top 10 feature importances for the XGBoost model. Number of projects, satisfaction level, tenure, average monthly hours, and evaluation score are the top 5." loading="lazy">
+                <figcaption class="caption">Chart 15: Top Clues for the Expert Learner (XGBoost)</figcaption>
+                <span class="tooltiptext">Project count, satisfaction, and tenure were top clues here.</span>
+            </figure>
+            <p>Chart 15 shows the perspective of our champion predictor, "Smart Boosting." Interestingly, it ranked <span class="highlight">number of projects</span> as the most critical factor, followed very closely by <span class="highlight">satisfaction level</span> and <span class="highlight">tenure (time with company)</span>. Workload seemed slightly more significant to this model.</p>
 
-            <h3>Our Champion Predictor</h3>
-            <p>While the simple logic method was okay, the more advanced "Teamwork Trees" and "Smart Boosting" methods were far better. Because "Smart Boosting" (<span class="highlight">XGBoost</span>) was slightly more accurate and effective, we chose it as our champion crystal ball to help Salifort identify employees who might need support.</p>
-        </div>
-    </div>
+            <h3>Our Champion Predictor: XGBoost Takes the Lead</h3>
+            <p>While the simple logic method gave us a basic understanding, the advanced "Teamwork Trees" and "Smart Boosting" methods were in a different league. Because "Smart Boosting" (<span class="highlight">XGBoost</span>) consistently demonstrated slightly better accuracy and, crucially, a better ability to identify employees who might leave (higher recall), we selected it as our go-to early warning system for Salifort Motors.</p>
+        </section>
 
-    <div id="solutions" class="container" data-aos="fade-up">
-        <div class="section">
-            <h2>Solutions: Building a Happier Workplace</h2>
-            <p>By combining the clues from our data exploration with the insights from our predictive crystal ball (XGBoost), we can suggest practical steps for Salifort Motors:</p>
-            <p><strong>What We Learned (The Key Takeaways):</strong></p>
+        <section id="solutions" class="container" data-aos="fade-up" aria-labelledby="solutions-heading">
+            <h2 id="solutions-heading">Solutions: Turning Insights into Action for a Happier Workplace</h2>
+            <p>Okay, we've listened to the data, found the clues, and even built an early warning system. Now for the most important part: what do we *do* about it? How can Salifort Motors use these insights to build a workplace where people feel valued, supported, and excited to stay?</p>
+            <p><strong>What We Learned (The Key Takeaways Summarized):</strong></p>
             <ul>
-                <li><b>Happiness is King:</b> Low satisfaction is the biggest warning sign.</li>
-                <li><b>The 3-5 Year Itch:</b> This period is crucial for retention.</li>
-                <li><b>Workload Balance Matters:</b> Too many projects (burnout) or too few (boredom) can be problems.</li>
-                <li><b>Long Hours = Risk:</b> High monthly hours often lead to departures.</li>
-                <li><b>Performance & Growth:</b> Feeling undervalued or stuck impacts decisions.</li>
-                <li><b>Promotions Retain:</b> Lack of advancement opportunities is a major factor.</li>
-                <li><b>Fair Pay is Essential:</b> Especially for those in lower pay bands.</li>
+                <li><b>Happiness is Paramount:</b> Low satisfaction isn't just a feeling; it's the biggest predictor of someone leaving.</li>
+                <li><b>The Critical Mid-Career Point:</b> The 3-5 year mark is a make-or-break period for many employees.</li>
+                <li><b>Workload Balance is Key:</b> Burnout from too many projects/hours, or boredom from too few, pushes people away.</li>
+                <li><b>Long Hours Signal Risk:</b> Consistently high monthly hours are a strong indicator of potential departure.</li>
+                <li><b>Performance, Recognition & Growth Matter:</b> Feeling stuck, unappreciated, or unfairly evaluated impacts retention.</li>
+                <li><b>Promotions are Powerful Retention Tools:</b> Lack of clear advancement opportunities is a major reason people look elsewhere.</li>
+                <li><b>Fair Compensation is Foundational:</b> Especially for those in lower salary bands, feeling underpaid is a strong push factor.</li>
             </ul>
-            <p><u>Recommendations for Salifort Motors:</u></p>
+            <p><u>Actionable Recommendations for Salifort Motors:</u></p>
             <ol>
-                <li><b>Tune In to Happiness:</b> Regularly check in on employee satisfaction (e.g., quick surveys). Address concerns about pay, workload, and recognition quickly.</li>
-                <li><b>Balance the Load:</b> Ensure projects are distributed fairly. Watch out for signs of burnout (too many hours/projects) and disengagement (too few).</li>
-                <li><b>Invest in Mid-Career Growth:</b> Create clear paths for advancement, especially for employees nearing the 3-5 year mark. Offer training or mentoring.</li>
-                <li><b>Make Reviews Meaningful:</b> Ensure performance reviews are fair, constructive, and linked to growth opportunities.</li>
-                <li><b>Recognize & Reward:</b> Celebrate achievements regularly. Make promotion paths clear and review pay scales to ensure competitiveness, particularly for lower-paid roles.</li>
+                <li><b>Proactively Monitor & Address Satisfaction:</b> Don't wait for exit interviews. Implement regular, light-touch check-ins (like pulse surveys) focused on satisfaction, workload, and recognition. Crucially, act on the feedback promptly.</li>
+                <li><b>Optimize Workload Distribution:</b> Managers should actively monitor project counts and average hours. Aim for a challenging but sustainable balance. Use the predictive model to flag potential overload/underload situations early.</li>
+                <li><b>Invest in Mid-Career Development & Retention:</b> Pay special attention to employees approaching the 3-5 year mark. Offer targeted development programs, mentorship opportunities, and clear discussions about career paths within Salifort.</li>
+                <li><b>Enhance the Performance Review Experience:</b> Ensure reviews are perceived as fair, constructive, and genuinely linked to growth. Train managers to deliver effective feedback and discuss career aspirations.</li>
+                <li><b>Strengthen Recognition & Reward Systems:</b> Celebrate successes publicly and privately. Make promotion criteria transparent and achievable. Conduct regular salary benchmarking to ensure competitiveness, paying close attention to the lower and medium bands.</li>
             </ol>
-            <p><u>Next Steps: Keep Improving!</u></p>
+            <p><u>Looking Ahead: Continuous Improvement</u></p>
             <ul>
-                <li>Talk to employees (especially those leaving) to understand the 'why' behind the data.</li>
-                <li>Try out targeted support programs for employees flagged by our crystal ball as high-risk.</li>
-                <li>Keep the crystal ball updated with new data so it stays accurate over time.</li>
+                <li><b>Gather Qualitative Insights:</b> Supplement the data with real conversations. Conduct "stay interviews" with happy employees and empathetic exit interviews to understand the nuances the numbers can't capture.</li>
+                <li><b>Pilot Targeted Interventions:</b> Use the predictive model to identify at-risk groups and pilot specific support programs (e.g., workload adjustments, mentoring, training) for them. Measure the impact.</li>
+                <li><b>Keep the Model Fresh:</b> Regularly retrain the predictive model with new employee data to ensure it remains accurate and relevant as the company evolves.</li>
             </ul>
-        </div>
-    </div>
+            <p>By taking these steps, Salifort Motors can move from simply reacting to turnover to proactively building an environment where talented people choose to build their careers.</p>
+        </section>
 
-    <div id="about" class="container slide-in">
-        <div class="section">
-            <h2>About This Project</h2>
-            <p>This project aimed to turn employee data into actionable steps for Salifort Motors' HR team. It blends data analysis techniques with practical business thinking. If you're curious about the technical details, you can find the <a href="https://github.com/tzolkowski96/tzolkowski96/tree/main/Employee-Churn-Prediction" target="_blank">Python code and full analysis here</a>.</p>
-            <p><i>Note: This project was completed as part of the Google Advanced Data Analytics Capstone course on Coursera, using a dataset provided by the course.</i></p>
-        </div>
-    </div>
+        <section id="about" class="container slide-in" aria-labelledby="about-heading">
+            <h2 id="about-heading">About This Project & The Data Detective</h2>
+            <p>This project wasn't just about crunching numbers; it was about translating data into a human story and actionable strategies for Salifort Motors' HR team and leadership. It demonstrates how data analysis, when combined with practical business thinking, can lead to meaningful improvements in the workplace.</p>
+            <p>I'm Tobin Zolkowski, the data detective behind this analysis. I'm passionate about using data to uncover insights and solve real-world problems. If you're curious about the technical nitty-gritty (the Python code, model details, etc.), feel free to explore the full analysis on my GitHub: <a href="https://github.com/tzolkowski96/tzolkowski96/tree/main/Employee-Churn-Prediction" target="_blank" rel="noopener noreferrer">Salifort Employee Churn Analysis</a>.</p>
+            <p><i>Transparency Note: This analysis was performed as part of the Google Advanced Data Analytics Capstone course on Coursera. The dataset, while realistic, was provided by the course for educational purposes.</i></p>
+        </section>
+    </main>
 
-    <div class="footer">
-        &copy; 2024 Tobin Zolkowski. All rights reserved. <a href="https://github.com/tzolkowski96/Salifort-Motors-Project" target="_blank">Project on GitHub</a>
-    </div>
+    <footer class="footer">
+        &copy; 2025 Tobin Zolkowski. Data Detective Work. <a href="https://github.com/tzolkowski96/Salifort-Motors-Project" target="_blank" rel="noopener noreferrer">Project on GitHub</a>
+    </footer>
 
-    <div class="fullscreen-overlay" id="fullscreen-overlay" role="dialog" aria-modal="true" aria-labelledby="fullscreen-caption" aria-describedby="fullscreen-img">
-        <img id="fullscreen-img" src="" alt="">
+    <div class="fullscreen-overlay" id="fullscreen-overlay" role="dialog" aria-modal="true" aria-labelledby="fullscreen-caption" aria-describedby="fullscreen-img" hidden>
+        <img id="fullscreen-img" src="" alt="Full screen view of selected chart">
         <div id="fullscreen-caption" class="fullscreen-caption"></div>
         <div class="zoom-container">
             <button class="zoom-in" id="zoom-in" aria-label="Zoom In">Zoom In</button>
