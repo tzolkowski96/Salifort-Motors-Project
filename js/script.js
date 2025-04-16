@@ -197,33 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTransform();
     }, { passive: false });
 
-    // --- Simple Scroll Animations for Containers ---
-    const containers = document.querySelectorAll('.container');
-    const observerOptions = {
-        root: null, // relative to the viewport
-        rootMargin: '0px',
-        threshold: 0.1 // Trigger when 10% of the element is visible
-    };
-
-    const observerCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: unobserve after animation to save resources
-                // observer.unobserve(entry.target);
-            }
-            // Optional: remove class if scrolling back up
-            // else {
-            //     entry.target.classList.remove('visible');
-            // }
-        });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    containers.forEach(container => {
-        observer.observe(container);
-    });
-
 });
 
 // Make closeOverlay globally accessible if called directly from HTML onclick
