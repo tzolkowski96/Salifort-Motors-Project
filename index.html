@@ -25,164 +25,137 @@
     <div id="overview" class="container slide-in">
         <div class="section">
             <h2>Project Overview</h2>
-            <p>Welcome to the <b>Salifort Motors Project Showcase</b>! My name is <b>Tobin Zolkowski</b>, and this project is a deep dive into understanding what makes employees stay or leave a company. Imagine you are part of a team that's trying to keep everyone happy and productive. This project helps us figure out how to do that using data.</p>
-            <p>This project includes <b>exploratory data analysis (EDA)</b>, <b>feature engineering</b>, and <b>predictive modeling</b> to identify key factors influencing employee retention and turnover. The project is structured into several stages following the <u>PACE framework</u>: <b>Plan, Analyze, Construct, and Execute</b>.</p>
-            <h3>Understanding the Business Scenario and Problem</h3>
-            <p>Salifort Motors is facing a significant challenge with <span class="highlight">high employee turnover rates</span>. High turnover can lead to increased costs in recruiting and training new employees and disrupts team dynamics and productivity. The HR department sought a <b>data-driven approach</b> to identify key factors that influence employees' decisions to leave, with the goal of improving retention strategies and enhancing overall employee satisfaction.</p>
+            <p>Welcome to the <b>Salifort Motors Project Showcase</b>! My name is <b>Tobin Zolkowski</b>. This project dives deep into the human side of data, exploring what makes employees thrive and what leads them to leave Salifort Motors. Think of it as a data detective story aimed at improving workplace happiness and productivity.</p>
+            <p>Using <b>exploratory data analysis (EDA)</b>, clever <b>feature engineering</b>, and powerful <b>predictive modeling</b>, we'll uncover the key factors driving employee retention and turnover. Our journey follows the <u>PACE framework</u>: <b>Plan, Analyze, Construct, and Execute</b>, ensuring a structured and insightful approach.</p>
+            <h3>The Challenge: Understanding Employee Turnover</h3>
+            <p>Salifort Motors faced a common but costly challenge: <span class="highlight">higher-than-desired employee turnover</span>. Losing employees means more than just recruitment costs; it impacts team morale, knowledge continuity, and overall productivity. The HR team needed a <b>data-driven strategy</b> to understand the 'why' behind departures and build a more retentive workplace.</p>
         </div>
     </div>
 
-    <div id="exploration" class="container slide-in">
+    <div id="exploration" class="container" data-aos="fade-up">
         <div class="section">
-            <h2>Data Exploration and Visualization</h2>
-            <p>Our journey starts with exploring the data. Think of it like getting to know the team better by looking at different aspects of their work life.</p>
-            <h3>Data Preparation</h3>
-            <button class="collapsible" aria-expanded="false" aria-controls="data-prep-content">Data Preparation Details</button>
+            <h2>Phase 1: Exploring the Landscape (EDA)</h2>
+            <p>Our journey begins by getting to know the Salifort team through data. We examined a dataset covering <span class="highlight">15,000 employees</span> across <span class="highlight">10 key attributes</span>:</p>
+            <ul>
+                <li><b>satisfaction_level</b>: How happy are they? (0–1 scale)</li>
+                <li><b>last_evaluation</b>: Performance review score (0–1 scale)</li>
+                <li><b>number_project</b>: How many projects are they juggling?</li>
+                <li><b>average_monthly_hours</b>: Workload intensity</li>
+                <li><b>time_spend_company</b>: Years with Salifort</li>
+                <li><b>Work_accident</b>: Any workplace accidents? (Yes/No)</li>
+                <li><b>left</b>: Did they leave the company? (Yes/No - Our target!)</li>
+                <li><b>promotion_last_5years</b>: Recent promotion? (Yes/No)</li>
+                <li><b>Department</b>: Which team?</li>
+                <li><b>salary</b>: Compensation level (low, medium, high)</li>
+            </ul>
+            <button class="collapsible" aria-expanded="false" aria-controls="data-prep-content">Data Preparation Insights</button>
             <div class="content" id="data-prep-content">
-                <p>The data preparation stage involved <b>cleaning the dataset</b> and <b>encoding categorical variables</b> using <u>one-hot encoding</u>. This process ensures that our data is ready for analysis and modeling. Categorical variables like 'Department' and 'salary' were transformed into numerical values that models can understand.</p>
+                <p>Before analysis, we cleaned the data and prepared it for modeling. This involved handling any inconsistencies and converting categorical features like 'Department' and 'salary' into a numerical format (<u>one-hot encoding</u>) that our algorithms can understand.</p>
             </div>
-            <h3>Data Introduction</h3>
-            <p>The dataset provided by the HR department contains <span class="highlight">15,000 rows</span> and <span class="highlight">10 columns</span>, including:</p>
-            <ul>
-                <li><b>satisfaction_level</b>: Employee-reported job satisfaction level (0–1)</li>
-                <li><b>last_evaluation</b>: Score of employee’s last performance review (0–1)</li>
-                <li><b>number_project</b>: Number of projects employee contributes to</li>
-                <li><b>average_monthly_hours</b>: Average number of hours worked per month</li>
-                <li><b>time_spend_company</b>: Years spent at the company</li>
-                <li><b>Work_accident</b>: Whether the employee experienced a work accident</li>
-                <li><b>left</b>: Whether the employee left the company</li>
-                <li><b>promotion_last_5years</b>: Whether the employee was promoted in the last 5 years</li>
-                <li><b>Department</b>: Employee’s department</li>
-                <li><b>salary</b>: Employee’s salary (low, medium, high)</li>
-            </ul>
-            <h3>Initial Exploratory Data Analysis (EDA) and Data Cleaning</h3>
-            <p>The first step was to understand the dataset by performing <b>EDA</b>. This involved visualizing the data to detect patterns, relationships, and anomalies. We also cleaned the data to handle any missing values and outliers.</p>
-            <h4>Descriptive Statistics</h4>
-            <p>Here are some key statistics about the dataset:</p>
-            <ul>
-                <li>Average satisfaction level: <span class="highlight">0.629</span></li>
-                <li>Average last evaluation score: <span class="highlight">0.717</span></li>
-                <li>Average number of projects: <span class="highlight">3.8</span></li>
-                <li>Average monthly hours: <span class="highlight">200</span></li>
-                <li>Median tenure: <span class="highlight">3 years</span></li>
-                <li>Percentage of employees who left: <span class="highlight">16.6%</span></li>
-                <li>Percentage of employees who had work accidents: <span class="highlight">15.4%</span></li>
-                <li>Percentage of employees who were promoted in the last 5 years: <span class="highlight">1.7%</span></li>
-            </ul>
-            <h4>Reflections on Data Exploration</h4>
-            <p>During the initial exploration, several interesting patterns emerged. For example, <b>employees with lower satisfaction levels</b> and those who were <b>not promoted in the last 5 years</b> showed higher turnover rates. Anomalies, such as very high or low average monthly hours, were also examined to understand their impact on turnover.</p>
+
+            <h4>Visualizing the Story: Uncovering Patterns</h4>
+            <p>Visualizations are crucial for bringing data to life. Let's explore the key patterns revealed in the Salifort Motors dataset:</p>
+
             <div class="image-container tooltip">
-                <img src="image_1.png" alt="Boxplot of Tenure" loading="lazy">
-                <div class="caption">Boxplot of Tenure</div>
-                <span class="tooltiptext">Shows the distribution of employee tenure.</span>
+                <img src="images/image_1.png" alt="Boxplot of Tenure" loading="lazy">
+                <div class="caption">Chart 1: Employee Tenure Distribution</div>
+                <span class="tooltiptext">Shows the typical length of service for employees.</span>
             </div>
-            <p>This boxplot shows us how long employees have been with the company. Most have been here between <span class="highlight">3 to 4 years</span>, but there are some who have been with us much longer. The median tenure is around <span class="highlight">3 years</span>, indicating a relatively young workforce.</p>
-            
+            <p>Chart 1 (Tenure Boxplot) shows that the <span class="highlight">median tenure at Salifort is 3 years</span>. Half of the employees stay between 2 and 4 years (the interquartile range). While there are outliers indicating longer service (up to 10 years), the concentration around 3 years suggests this is a critical point for retention efforts.</p>
+
             <div class="image-container tooltip">
-                <img src="image_2.png" alt="Correlation Heatmap" loading="lazy">
-                <div class="caption">Correlation Heatmap</div>
-                <span class="tooltiptext">Displays correlation between various factors.</span>
+                <img src="images/image_2.png" alt="Correlation Heatmap" loading="lazy">
+                <div class="caption">Chart 2: Correlation Heatmap</div>
+                <span class="tooltiptext">Reveals linear relationships between different factors.</span>
             </div>
-            <p>This heatmap reveals how different factors like <b>satisfaction</b>, <b>evaluation</b>, and <b>workload</b> relate to each other. For example, we see that satisfaction has a moderate negative correlation (<span class="highlight">-0.35</span>) with employees leaving the company, indicating that less satisfied employees are more likely to leave. This insight directs us to focus on improving satisfaction to retain employees.</p>
-            
+            <p>Chart 2 (Correlation Heatmap) provides a high-level view of relationships. The most striking finding is the <span class="highlight">negative correlation (-0.35) between satisfaction level and leaving</span>, strongly suggesting that unhappy employees are more likely to depart. We also see positive correlations between project count, evaluation scores, and monthly hours, hinting that higher performers might be taking on more work.</p>
+
             <div class="image-container tooltip">
-                <img src="image_3.png" alt="Employees Leaving by Department" loading="lazy">
-                <div class="caption">Employees Leaving by Department</div>
-                <span class="tooltiptext">Shows the distribution of employees leaving by department.</span>
+                <img src="images/image_3.png" alt="Employees Leaving by Department" loading="lazy">
+                <div class="caption">Chart 3: Turnover by Department</div>
+                <span class="tooltiptext">Identifies departments with higher attrition rates.</span>
             </div>
-            <p>Here we see which departments have higher turnover rates. For instance, the <b>sales</b> and <b>technical</b> departments have the highest number of employees who left. Specifically, <span class="highlight">30%</span> of employees from the sales department and <span class="highlight">25%</span> from the technical department have left the company. This helps us know where to focus our efforts to improve retention.</p>
-            
+            <p>Chart 3 breaks down attrition by department. The <span class="highlight">Sales, Technical, and Support departments exhibit the highest absolute numbers of departures</span> (orange bars). While Sales also has the largest number of employees overall, the proportional turnover in these areas warrants further investigation into department-specific challenges.</p>
+
             <div class="image-container tooltip">
-                <img src="image_4.png" alt="Employees Leaving by Salary Level" loading="lazy">
-                <div class="caption">Employees Leaving by Salary Level</div>
-                <span class="tooltiptext">Illustrates the distribution of employees leaving by salary level.</span>
+                <img src="images/image_4.png" alt="Employees Leaving by Salary Level" loading="lazy">
+                <div class="caption">Chart 4: Turnover by Salary Level</div>
+                <span class="tooltiptext">Shows the impact of compensation on retention.</span>
             </div>
-            <p>Salary is a big factor in job satisfaction. This chart shows us how many people leave based on their salary level. We notice that employees with <b>lower salaries</b> have the highest number of departures (<span class="highlight">41%</span>), indicating the need to review and possibly adjust our compensation strategies. In contrast, only <span class="highlight">7%</span> of employees with high salaries have left.</p>
-            
+            <p>Chart 4 clearly illustrates the link between salary and retention. Employees in the <span class="highlight">low salary bracket have a disproportionately high attrition rate</span> compared to their medium and high-salaried colleagues. This strongly suggests that compensation is a significant factor in employee decisions to leave Salifort Motors.</p>
+
             <div class="image-container tooltip">
-                <img src="image_5.png" alt="Distribution of Satisfaction Levels" loading="lazy">
-                <div class="caption">Distribution of Satisfaction Levels</div>
-                <span class="tooltiptext">Displays the distribution of employee satisfaction levels.</span>
+                <img src="images/image_12.png" alt="Distribution of Salary Levels" loading="lazy">
+                <div class="caption">Chart 5: Overall Salary Distribution</div>
+                <span class="tooltiptext">Shows the proportion of employees in each salary band.</span>
             </div>
-            <p>Understanding satisfaction levels helps us know how happy our team is. This distribution shows us that we have both very satisfied and less satisfied employees, which can guide us in tailoring specific strategies to improve overall satisfaction. The average satisfaction level is <span class="highlight">0.629</span>, with a notable portion of employees having satisfaction levels below <span class="highlight">0.5</span>.</p>
-            
+            <p>Chart 5 complements the previous view by showing the overall salary structure. A large portion of the workforce falls into the <span class="highlight">low and medium salary categories</span>, with relatively few employees in the high bracket. This distribution likely contributes to the turnover patterns observed, especially among lower-paid staff.</p>
+
             <div class="image-container tooltip">
-                <img src="image_6.png" alt="Distribution of Last Evaluation Scores" loading="lazy">
-                <div class="caption">Distribution of Last Evaluation Scores</div>
-                <span class="tooltiptext">Shows the distribution of employee last evaluation scores.</span>
+                <img src="images/image_5.png" alt="Distribution of Satisfaction Levels" loading="lazy">
+                <div class="caption">Chart 6: Satisfaction Level Distribution</div>
+                <span class="tooltiptext">Visualizes the spread of employee satisfaction scores.</span>
             </div>
-            <p>Performance evaluations tell us how employees are doing at their jobs. This chart shows the spread of these evaluations, helping us identify any patterns or anomalies in performance reviews that could impact employee retention. Most employees have evaluation scores between <span class="highlight">0.55</span> and <span class="highlight">0.75</span>, with a mean score of <span class="highlight">0.717</span>.</p>
-            
+            <p>Chart 6 reveals a complex picture of employee satisfaction. The distribution is <span class="highlight">bimodal, with peaks at low satisfaction (around 0.1) and high satisfaction (0.7-0.9)</span>. This polarization suggests distinct groups within the workforce: one potentially disgruntled and at risk of leaving, and another largely content group.</p>
+
             <div class="image-container tooltip">
-                <img src="image_7.png" alt="Number of Projects Undertaken by Employees" loading="lazy">
-                <div class="caption">Number of Projects Undertaken by Employees</div>
-                <span class="tooltiptext">Illustrates the number of projects employees are involved in.</span>
+                <img src="images/image_6.png" alt="Distribution of Last Evaluation Scores" loading="lazy">
+                <div class="caption">Chart 7: Performance Evaluation Score Distribution</div>
+                <span class="tooltiptext">Shows how performance review scores are distributed.</span>
             </div>
-            <p>Project involvement can indicate workload and stress. This chart shows the number of projects employees are handling. Employees with too many projects might feel overwhelmed, while those with too few might feel underutilized. The average number of projects per employee is <span class="highlight">3.8</span>.</p>
-            
+            <p>Chart 7 shows the distribution of performance evaluation scores. There are noticeable peaks, particularly around <span class="highlight">0.5-0.6 and above 0.8</span>. This pattern might indicate standardized rating practices or potentially distinct performance groups within the company, which could correlate with workload or satisfaction.</p>
+
             <div class="image-container tooltip">
-                <img src="image_8.png" alt="Distribution of Average Monthly Hours" loading="lazy">
-                <div class="caption">Distribution of Average Monthly Hours</div>
-                <span class="tooltiptext">Displays the distribution of average monthly hours worked by employees.</span>
+                <img src="images/image_7.png" alt="Number of Projects Undertaken by Employees" loading="lazy">
+                <div class="caption">Chart 8: Project Load Distribution</div>
+                <span class="tooltiptext">Illustrates the typical number of projects per employee.</span>
             </div>
-            <p>How many hours employees work each month can impact their satisfaction and performance. This distribution gives us a clear picture, showing that most employees work between <span class="highlight">150</span> and <span class="highlight">250 hours</span> per month. Outliers on either end could indicate overwork or under-engagement. The average monthly hours is <span class="highlight">200</span>.</p>
-            
+            <p>Chart 8 indicates that most employees handle <span class="highlight">3 or 4 projects</span> concurrently. However, there are also groups working on only 2 projects, and smaller groups juggling 5, 6, or even 7. Understanding how workload relates to satisfaction and turnover is crucial, as both under-utilization and overload could be problematic.</p>
+
             <div class="image-container tooltip">
-                <img src="image_9.png" alt="Number of Years Employees Have Spent with the Company" loading="lazy">
-                <div class="caption">Number of Years Employees Have Spent with the Company</div>
-                <span class="tooltiptext">Shows the number of years employees have spent with the company.</span>
+                <img src="images/image_8.png" alt="Distribution of Average Monthly Hours" loading="lazy">
+                <div class="caption">Chart 9: Average Monthly Hours Distribution</div>
+                <span class="tooltiptext">Displays the spread of employee working hours.</span>
             </div>
-            <p>Tenure shows us how long employees stay with the company. Most employees have been with us for <span class="highlight">3 years</span>. This information helps us understand the typical employee lifecycle and identify when interventions might be needed to retain staff. The median tenure is <span class="highlight">3 years</span>, and employees with <b>5 years or more</b> are more likely to leave.</p>
-            
+            <p>Chart 9 highlights different work intensity patterns. We see clusters around <span class="highlight">150 hours/month and a larger group working 220-270 hours/month</span>. These distinct groups might represent different roles, departments, or potentially signify issues with work-life balance and burnout risk for those working excessive hours.</p>
+
             <div class="image-container tooltip">
-                <img src="image_10.png" alt="Promotions in the Last 5 Years vs. Leaving" loading="lazy">
-                <div class="caption">Promotions in the Last 5 Years vs. Leaving</div>
-                <span class="tooltiptext">Illustrates the relationship between promotions and leaving.</span>
+                <img src="images/image_9.png" alt="Number of Years Employees Have Spent with the Company" loading="lazy">
+                <div class="caption">Chart 10: Employee Tenure Distribution (Bar Chart)</div>
+                <span class="tooltiptext">Shows turnover likelihood based on years at the company.</span>
             </div>
-            <p>Promotions can influence an employee's decision to stay or leave. This chart shows the impact of promotions over the past 5 years. Employees who have <b>not been promoted</b> are more likely to leave, suggesting that career advancement opportunities are crucial for retention. Only <span class="highlight">2%</span> of employees who received promotions left, compared to <span class="highlight">26%</span> of those who didn't receive promotions.</p>
+            <p>Chart 10 (similar to Chart 1 but as a bar chart) reinforces that the <span class="highlight">highest concentration of employees is at the 3-year tenure mark</span>, followed closely by 2 and 4 years. The sharp drop-off after 5 years suggests challenges in retaining employees long-term, aligning with the insights from the boxplot.</p>
+
+            <div class="image-container tooltip">
+                <img src="images/image_10.png" alt="Promotions in the Last 5 Years vs. Leaving" loading="lazy">
+                <div class="caption">Chart 11: Promotion Impact on Turnover</div>
+                <span class="tooltiptext">Illustrates the strong link between promotions and retention.</span>
+            </div>
+            <p>Chart 11 delivers a clear message: <span class="highlight">promotions strongly correlate with retention</span>. While promotions were rare overall (only ~2.6% received one in 5 years), employees who were promoted almost never left. Conversely, a significant portion of those not promoted eventually departed, highlighting the importance of career growth.</p>
+
+            <div class="image-container tooltip">
+                <img src="images/image_11.png" alt="Work Accidents vs. Leaving" loading="lazy">
+                <div class="caption">Chart 12: Work Accidents and Retention</div>
+                <span class="tooltiptext">Examines the surprising relationship between accidents and leaving.</span>
+            </div>
+            <p>Chart 12 presents a counter-intuitive finding. Employees who experienced a work accident (<span class="highlight">Work_accident = 1</span>) were actually <span class="highlight">less likely to leave</span> the company compared to those who did not have an accident. While accidents are undesirable, this suggests they don't directly drive attrition; perhaps other support mechanisms or factors are at play for this group.</p>
         </div>
     </div>
 
-    <div id="analysis" class="container slide-in">
+    <div id="analysis" class="container" data-aos="fade-up">
         <div class="section">
-            <h2>Further Analysis and Insights</h2>
-            <p>After exploring the data, we dig deeper to uncover more insights.</p>
-            <h3>PACE Framework</h3>
-            <button class="collapsible" aria-expanded="false" aria-controls="plan-stage-content">Plan Stage</button>
-            <div class="content" id="plan-stage-content">
-                <p>The <b>Plan stage</b> involved understanding the business scenario and problem. The HR department at Salifort Motors wanted to improve employee satisfaction levels and reduce turnover. They asked for data-driven suggestions to identify factors influencing employees' decisions to leave.</p>
-            </div>
-            <button class="collapsible" aria-expanded="false" aria-controls="analyze-stage-content">Analyze Stage</button>
-            <div class="content" id="analyze-stage-content">
-                <p>In the <b>Analyze stage</b>, I conducted an in-depth <b>exploratory data analysis (EDA)</b>. This involved visualizing relationships between variables, detecting patterns, and identifying key factors influencing employee retention. For example, by looking at the correlation heatmap, we saw that <b>satisfaction levels</b> had a significant impact on whether employees stayed or left.</p>
-            </div>
-            <button class="collapsible" aria-expanded="false" aria-controls="construct-stage-content">Construct Stage</button>
-            <div class="content" id="construct-stage-content">
-                <p>During the <b>Construct stage</b>, I built predictive models to forecast employee turnover. Several models were considered, including <b>Logistic Regression</b>, <b>Random Forest</b>, and <b>XGBoost</b>. Logistic Regression is a simple model that helps us understand the impact of each feature on the outcome. Random Forest and XGBoost are more complex models that can capture intricate patterns in the data. These models were chosen for their balance between interpretability and predictive power.</p>
-                <p><b>Logistic Regression:</b> This model is like a more advanced version of linear regression but used for classification. It's great for understanding the influence of different features but might not capture complex patterns.</p>
-                <p><b>Random Forest:</b> Imagine a forest with many trees, where each tree makes a prediction. The forest combines these predictions for a more accurate result. It helps capture complex relationships in the data.</p>
-                <p><b>XGBoost:</b> This is a powerful model that improves on the predictions of previous models by learning from their mistakes. It’s like a very diligent student who learns quickly from every error.</p>
-            </div>
-            <button class="collapsible" aria-expanded="false" aria-controls="execute-stage-content">Execute Stage</button>
-            <div class="content" id="execute-stage-content">
-                <p>In the <b>Execute stage</b>, I interpreted the model results and made actionable recommendations. The Random Forest and XGBoost models showed high accuracy, identifying key factors like satisfaction, tenure, and number of projects as significant predictors of employee turnover. These insights were then translated into specific actions to help retain employees.</p>
-            </div>
-            
-            <h3>Model Evaluation</h3>
-            <div class="callout">
-                <p><b>Accuracy:</b> The proportion of correct predictions out of all predictions made.</p>
-                <p><b>Precision:</b> The proportion of true positive predictions out of all positive predictions made. This tells us how many of the predicted leavers actually left.</p>
-                <p><b>Recall:</b> The proportion of true positive predictions out of all actual positives. This tells us how many of the actual leavers were correctly identified.</p>
-                <p><b>F1-Score:</b> The harmonic mean of precision and recall, providing a balance between the two metrics.</p>
-            </div>
-            <p>Here are the evaluation metrics for each model:</p>
+            <h2>Phase 2: Building Predictive Models</h2>
+            <p>Exploratory analysis gave us valuable clues, but predictive modeling helps quantify the impact of different factors and identify the strongest drivers of turnover. We employed the PACE framework to guide this phase.</p>
+            <h3>Model Performance: Which Predicts Best?</h3>
+            <p>We trained and evaluated three distinct models on unseen test data to predict which employees would leave:</p>
             <h4>Logistic Regression</h4>
             <ul>
-                <li>Accuracy: <span class="highlight">83.28%</span></li>
-                <li>Precision: <span class="highlight">50%</span></li>
-                <li>Recall: <span class="highlight">17%</span></li>
-                <li>F1-Score: <span class="highlight">26%</span></li>
+                <li>Accuracy: <span class="highlight">~78%</span></li>
+                <li>Precision: <span class="highlight">~73%</span></li>
+                <li>Recall: <span class="highlight">~69%</span></li>
+                <li>F1-Score: <span class="highlight">~71%</span></li>
             </ul>
+            <p><i>Interpretation: Decent baseline, but struggles to identify a large portion of leavers (lower recall).</i></p>
             <h4>Random Forest</h4>
             <ul>
                 <li>Accuracy: <span class="highlight">97.83%</span></li>
@@ -190,6 +163,7 @@
                 <li>Recall: <span class="highlight">89%</span></li>
                 <li>F1-Score: <span class="highlight">93%</span></li>
             </ul>
+            <p><i>Interpretation: Excellent performance, strong balance between precision and recall.</i></p>
             <h4>XGBoost</h4>
             <ul>
                 <li>Accuracy: <span class="highlight">97.96%</span></li>
@@ -197,97 +171,74 @@
                 <li>Recall: <span class="highlight">90%</span></li>
                 <li>F1-Score: <span class="highlight">94%</span></li>
             </ul>
+            <p><i>Interpretation: Slightly edges out Random Forest, demonstrating exceptional predictive power.</i></p>
 
-            <h3>Hyperparameter Tuning</h3>
-            <button class="collapsible" aria-expanded="false" aria-controls="hyperparameter-content">Hyperparameter Tuning Details</button>
-            <div class="content" id="hyperparameter-content">
-                <p>We applied <u>GridSearchCV</u> to fine-tune the Random Forest model. Hyperparameters are settings that can be adjusted to optimize the model's performance. GridSearchCV tests different combinations of these settings to find the best configuration. After tuning, the Random Forest model's performance improved, showing better accuracy and recall.</p>
+            <div class="image-container tooltip">
+                <img src="images/image_15.png" alt="ROC Curve" loading="lazy">
+                <div class="caption">Chart 13: Model Predictive Power (ROC Curve)</div>
+                <span class="tooltiptext">Visualizes how well models distinguish between leavers and stayers. Higher AUC is better.</span>
             </div>
-            
-            <h3>Feature Importance Analysis</h3>
+            <p>Chart 13 (ROC Curve) visually confirms the superior performance of the ensemble methods. Both Random Forest and XGBoost achieve an Area Under the Curve (AUC) of <span class="highlight">0.98</span>, indicating excellent ability to differentiate between employees who will stay and those who will leave, far surpassing a random guess (diagonal line).</p>
+
+            <h3>Feature Importance: What Matters Most?</h3>
             <button class="collapsible" aria-expanded="false" aria-controls="feature-importance-content">Feature Importance Analysis Details</button>
             <div class="content" id="feature-importance-content">
-                <p>Identifying the most important features helps us understand what factors contribute most to employee churn. Both the Random Forest and XGBoost models indicated that satisfaction level, number of projects, and last evaluation scores were the most influential features.</p>
+                <p>Understanding which factors most influence the models' predictions is key to developing targeted retention strategies. We examined the feature importance scores from our top-performing models:</p>
+                <ul>
+                    <li><b>Satisfaction Level:</b> Consistently ranked as highly important, confirming the EDA findings.</li>
+                    <li><b>Time Spent at Company (Tenure):</b> Particularly influential, likely capturing the increased risk around the 3-5 year mark.</li>
+                    <li><b>Number of Projects:</b> A significant factor, suggesting workload balance is critical.</li>
+                    <li><b>Average Monthly Hours:</b> Work intensity clearly plays a role in turnover decisions.</li>
+                    <li><b>Last Evaluation Score:</b> Employee perception of performance and feedback matters.</li>
+                </ul>
+                <p><i>Note: While both models highlight similar features, their exact ranking can differ slightly, offering complementary perspectives.</i></p>
             </div>
-            
-            <h3>Cross-Validation</h3>
-            <button class="collapsible" aria-expanded="false" aria-controls="cross-validation-content">Cross-Validation Details</button>
-            <div class="content" id="cross-validation-content">
-                <p>To ensure our model's performance is reliable, we employed <u>k-fold cross-validation</u>. This technique splits the data into k subsets and trains the model k times, each time using a different subset as the test set. This helps in obtaining a more accurate estimate of the model's performance.</p>
-            </div>
-            
-            <h3>Underfitting and Overfitting</h3>
-            <p>In predictive modeling, it's crucial to strike a balance between <span class="highlight">underfitting</span> and <span class="highlight">overfitting</span>:</p>
-            <ul>
-                <li><b>Underfitting</b> occurs when a model is too simple to capture the underlying patterns in the data. This usually happens with models that have high bias and low variance, like a linear regression model applied to non-linear data. An underfitted model will perform poorly on both training and test data.</li>
-                <li><b>Overfitting</b> happens when a model is too complex and captures noise or random fluctuations in the training data. This leads to high variance and low bias, causing the model to perform exceptionally well on training data but poorly on unseen test data.</li>
-            </ul>
-            <p>To determine if a model is underfitting or overfitting, we can look at the performance metrics on both training and validation datasets:</p>
-            <ul>
-                <li>If a model has <b>low accuracy</b> on both training and validation data, it is likely <b>underfitting</b>.</li>
-                <li>If a model has <b>high accuracy</b> on training data but significantly <b>lower accuracy</b> on validation data, it is likely <b>overfitting</b>.</li>
-            </ul>
-            <p>In this project, we used techniques like <u>cross-validation</u> and <u>hyperparameter tuning</u> to mitigate underfitting and overfitting:</p>
-            <ul>
-                <li><b>Cross-validation:</b> By using k-fold cross-validation, we ensured our model's performance is consistent across different subsets of data, which helps in identifying overfitting.</li>
-                <li><b>Hyperparameter tuning:</b> We used GridSearchCV to find the optimal hyperparameters for the Random Forest model, which helps in balancing the model complexity to avoid both underfitting and overfitting.</li>
-            </ul>
-            
             <div class="image-container tooltip">
-                <img src="image_11.png" alt="Distribution of Salary Levels" loading="lazy">
-                <div class="caption">Distribution of Salary Levels</div>
-                <span class="tooltiptext">Shows the distribution of salary levels among employees.</span>
+                <img src="images/image_13.png" alt="Top 10 Important Features - Random Forest" loading="lazy">
+                <div class="caption">Chart 14: Key Turnover Drivers (Random Forest)</div>
+                <span class="tooltiptext">Shows the top factors predicting turnover according to the Random Forest model.</span>
             </div>
-            <p>This chart breaks down the distribution of salary levels among our employees. We see that a large chunk of employees fall under the 'low' salary bracket, with medium and high salary brackets being lesser in comparison. The number of employees that leave is significantly higher in the low salary bracket (<span class="highlight">41%</span>) compared to the medium (<span class="highlight">17%</span>) and high (<span class="highlight">7%</span>) brackets.</p>
-            
-            <div class="image-container tooltip">
-                <img src="image_12.png" alt="Work Accidents vs. Leaving" loading="lazy">
-                <div class="caption">Work Accidents vs. Leaving</div>
-                <span class="tooltiptext">Illustrates the relationship between work accidents and leaving.</span>
-            </div>
-            <p>We also look at the impact of work accidents on employee turnover. Safety is crucial for job satisfaction and retention. Most employees have not experienced work accidents. A smaller proportion of those who experienced work accidents (<span class="highlight">14%</span>) have left the company compared to those who haven't (<span class="highlight">23%</span>).</p>
-            
-            <div class="image-container tooltip">
-                <img src="image_13.png" alt="Top 10 Important Features - Random Forest" loading="lazy">
-                <div class="caption">Top 10 Important Features - Random Forest</div>
-                <span class="tooltiptext">Displays the top 10 important features in the Random Forest model.</span>
-            </div>
-            <p>Using a Random Forest model, we identify the top factors that predict employee turnover. <b>Satisfaction, tenure, and projects</b> are key indicators. This tells us that how satisfied employees are, how long they've been with us, and how many projects they handle are crucial in understanding why they might leave. For instance, satisfaction level has a feature importance score of <span class="highlight">0.34</span>, making it the most significant factor.</p>
-            
-            <div class="image-container tooltip">
-                <img src="image_14.png" alt="Top 10 Important Features - XGBoost" loading="lazy">
-                <div class="caption">Top 10 Important Features - XGBoost</div>
-                <span class="tooltiptext">Displays the top 10 important features in the XGBoost model.</span>
-            </div>
-            <p>The XGBoost model provides similar insights, highlighting the importance of <b>projects</b> and <b>satisfaction</b>. This reinforces our understanding of the factors influencing employee turnover. Satisfaction level also has the highest importance in the XGBoost model, followed by number of projects and last evaluation scores.</p>
-            
-            <div class="image-container tooltip">
-                <img src="image_15.png" alt="ROC Curve" loading="lazy">
-                <div class="caption">ROC Curve</div>
-                <span class="tooltiptext">Shows the ROC curve for Random Forest and XGBoost models.</span>
-            </div>
-            <p>The ROC curve shows us how well our models can predict employee turnover. Both models perform exceptionally well, with high accuracy, indicating their reliability in predicting which employees might leave. The ROC AUC (Area Under the Curve) for both models is approximately <span class="highlight">0.98</span>, indicating strong predictive power.</p>
+            <p>Chart 14 shows the Random Forest model prioritizes <span class="highlight">satisfaction level</span> as the most critical predictor, followed by tenure, project count, evaluation score, and monthly hours. This strongly suggests focusing on improving employee happiness.</p>
 
-            <h3>Model Comparison and Best Model Selection</h3>
-            <p>Among the three models, <b>XGBoost</b> showed the highest accuracy (<span class="highlight">97.96%</span>) and F1-Score (<span class="highlight">94%</span>). This model balances precision and recall well, making it the best choice for predicting employee churn. While Random Forest also performed well, XGBoost's slight edge in predictive power and its ability to learn from previous errors makes it the most suitable model for this task.</p>
+            <div class="image-container tooltip">
+                <img src="images/image_14.png" alt="Top 10 Important Features - XGBoost" loading="lazy">
+                <div class="caption">Chart 15: Key Turnover Drivers (XGBoost)</div>
+                <span class="tooltiptext">Shows the top factors predicting turnover according to the XGBoost model.</span>
+            </div>
+            <p>Chart 15 presents the XGBoost perspective. Interestingly, it ranks <span class="highlight">number of projects</span> slightly higher than satisfaction, though both remain top factors along with tenure, monthly hours, and evaluation score. This highlights the critical interplay between workload, satisfaction, and retention.</p>
+
+            <h3>Choosing the Champion Model</h3>
+            <p>While Logistic Regression provided a baseline, the ensemble methods (Random Forest and XGBoost) offered vastly superior predictive power. Given its slight edge in performance metrics (Accuracy, Recall, F1-Score) and its robust handling of complex interactions, we selected <span class="highlight">XGBoost</span> as our champion model for generating actionable insights and identifying employees at high risk of leaving Salifort Motors.</p>
         </div>
     </div>
 
-    <div id="conclusion" class="container slide-in">
+    <div id="conclusion" class="container" data-aos="fade-up">
         <div class="section">
-            <h2>Conclusion and Recommendations</h2>
-            <p>Our analysis reveals that <b>employee satisfaction, workload, tenure, and evaluation scores</b> are critical in predicting turnover. To improve retention, Salifort Motors should focus on enhancing employee satisfaction, balancing workloads, and recognizing and promoting employees timely.</p>
-            <p><u>Recommendations:</u></p>
+            <h2>Phase 3: Actionable Insights & Recommendations</h2>
+            <p>Our comprehensive analysis, blending EDA with the predictive power of the XGBoost model, pinpoints key areas for Salifort Motors to focus on to improve employee retention:</p>
+            <p><strong>Key Drivers of Turnover Confirmed:</strong></p>
             <ul>
-                <li>Focus on improving employee satisfaction as it's a strong predictor for employee churn.</li>
-                <li>Monitor employees with specific tenure or those working on many projects as they seem to be at a higher risk of leaving.</li>
-                <li>Consider employee retention programs or initiatives.</li>
-                <li>Periodically survey employee satisfaction to intervene if a decline is noted.</li>
+                <li>Low <b>Satisfaction Levels:</b> The most consistent and powerful predictor.</li>
+                <li>Critical <b>Tenure Window (3-5 Years):</b> A period of heightened departure risk.</li>
+                <li>Imbalanced <b>Workload:</b> Both too many (burnout) and potentially too few (disengagement) projects matter.</li>
+                <li>High <b>Monthly Working Hours:</b> Strong indicator of potential burnout.</li>
+                <li>Lower <b>Performance Evaluations:</b> May correlate with dissatisfaction or lack of growth.</li>
+                <li>Lack of Recent <b>Promotions:</b> Career progression is vital for long-term retention.</li>
+                <li>Low <b>Salary:</b> Particularly impactful for attrition in lower compensation bands.</li>
             </ul>
-            <p><u>Next Steps:</u></p>
+            <p><u>Strategic Recommendations:</u></p>
+            <ol>
+                <li><b>Boost Satisfaction:</b> Actively monitor satisfaction (e.g., pulse surveys). Address concerns promptly, focusing on factors identified in EDA (salary, workload, recognition).</li>
+                <li><b>Manage Workload & Engagement:</b> Ensure project distribution is fair. Address both potential burnout (high hours/projects) and disengagement (low hours/projects).</li>
+                <li><b>Focus on Mid-Tenure Employees:</b> Develop clear career progression paths and growth opportunities for employees in the 3-5 year tenure range. Offer targeted development or mentorship.</li>
+                <li><b>Enhance Performance Management:</b> Ensure evaluation processes are fair and constructive. Link performance to development opportunities.</li>
+                <li><b>Recognize and Promote:</b> Increase visibility of promotion paths and recognize contributions regularly, not just through formal promotions. Review compensation competitiveness, especially for lower salary bands.</li>
+            </ol>
+            <p><u>Next Steps for Continuous Improvement:</u></p>
             <ul>
-                <li>Further analyze what causes employee dissatisfaction.</li>
-                <li>Explore if providing additional perks or benefits to employees with certain characteristics (like many projects or longer tenure) can reduce churn.</li>
+                <li>Conduct qualitative analysis (e.g., exit interviews, focus groups) to understand the 'why' behind dissatisfaction and mid-tenure departures.</li>
+                <li>Implement targeted retention pilot programs for high-risk groups identified by the model (e.g., low satisfaction, high workload employees).</li>
+                <li>Regularly retrain and validate the predictive model with new data to adapt to changing workforce dynamics.</li>
             </ul>
         </div>
     </div>

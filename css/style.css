@@ -1,0 +1,512 @@
+body {
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Added fallbacks */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #fdfdff, #f1f4f8); /* Lighter, cooler gradient */
+    color: #333; /* Slightly softer black */
+    line-height: 1.7;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+.header {
+    background: linear-gradient(to right, #0056b3, #007bff); /* Gradient header */
+    color: white;
+    padding: 30px 20px; /* Increased padding */
+    text-align: center;
+    border-bottom: 5px solid #004085; /* Darker accent */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin-bottom: 5px;
+}
+
+.header p {
+    margin-top: 0;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px; /* Slightly narrower */
+    margin: 40px auto; /* Increased vertical margin */
+    padding: 35px; /* Increased padding */
+    background-color: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 86, 179, 0.08); /* Subtle blueish shadow */
+    border-radius: 10px; /* More rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Start hidden for animation */
+    transform: translateY(20px); /* Start slightly lower for animation */
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: calc(var(--order, 0) * 0.1s); /* Stagger animation */
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container:hover {
+     box-shadow: 0 8px 25px rgba(0, 86, 179, 0.12); /* Enhanced hover shadow */
+     transform: translateY(-3px); /* Lift effect */
+}
+
+h2 {
+    color: #004085; /* Darker, richer blue */
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 15px; /* Increased padding */
+    margin-bottom: 35px; /* Increased spacing */
+    font-size: 2em; /* Larger */
+    font-weight: 700;
+    letter-spacing: -0.5px; /* Subtle tightening */
+}
+h3 {
+    color: #0069d9; /* Slightly brighter blue */
+    margin-top: 35px; /* Increased spacing */
+    margin-bottom: 18px;
+    font-size: 1.5em; /* Larger */
+    font-weight: 700;
+}
+
+p, ul {
+    margin-bottom: 1.2em; /* Consistent paragraph/list spacing */
+}
+
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+.image-container {
+    text-align: center;
+    margin: 35px 0; /* Increased margin */
+    position: relative;
+}
+.image-container img {
+    width: 90%; /* Slightly larger */
+    max-width: 700px; /* Larger max */
+    border: 1px solid #e0e0e0; /* Lighter border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 15px;
+    border-radius: 8px; /* More rounded corners */
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+    cursor: pointer;
+}
+
+.image-container img:hover {
+    transform: translateY(-5px) scale(1.02); /* More pronounced lift and slight scale */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.caption {
+    font-style: italic;
+    color: #6c757d; /* Softer grey */
+    margin-top: 0;
+    font-size: 0.95em;
+}
+.section {
+    margin: 30px 0; /* Increased spacing */
+}
+.footer {
+    background-color: #2c3e50; /* Darker, cooler grey */
+    color: #bdc3c7; /* Lighter grey text */
+    text-align: center;
+    padding: 25px 0; /* Increased padding */
+    margin-top: 50px; /* Increased spacing */
+    font-size: 0.9em;
+}
+.footer a {
+    color: #3498db; /* Brighter link color */
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline; /* Add underline on hover */
+}
+.navbar {
+    overflow: hidden;
+    background-color: #34495e; /* Slightly different dark blue-grey */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15); /* Enhanced shadow */
+    transition: background-color 0.3s ease;
+}
+.navbar a {
+    float: left;
+    display: block;
+    color: #ecf0f1; /* Lighter text */
+    text-align: center;
+    padding: 16px 24px; /* Adjusted padding */
+    text-decoration: none;
+    font-size: 1em; /* Slightly larger */
+    font-weight: 500; /* Medium weight */
+    position: relative;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.navbar a:hover {
+    background-color: #4a6fa5; /* Lighter blue hover */
+    color: white;
+}
+.navbar a.active {
+    background-color: #0056b3; /* Clearer active background */
+    color: white;
+    font-weight: 700;
+}
+
+.highlight {
+    background-color: rgba(0, 123, 255, 0.1); /* Lighter, transparent blue */
+    color: #0056b3;
+    padding: 4px 8px; /* Slightly more padding */
+    border-radius: 5px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Allows transform */
+}
+.highlight:hover {
+    background-color: rgba(0, 123, 255, 0.2);
+    transform: scale(1.03); /* Slight scale effect */
+}
+.callout {
+    background-color: #eef2f7; /* Cooler light grey */
+    border-left: 6px solid #007bff; /* Thicker border */
+    padding: 20px 30px; /* Increased padding */
+    margin: 30px 0; /* Adjusted margin */
+    border-radius: 6px;
+    font-size: 1em; /* Slightly larger */
+    box-shadow: 0 2px 5px rgba(0, 86, 179, 0.05); /* Subtle shadow */
+}
+
+.callout p:last-child {
+    margin-bottom: 0; /* Remove extra margin at the bottom */
+}
+
+.collapsible {
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef); /* Subtle gradient */
+    color: #0056b3;
+    cursor: pointer;
+    padding: 18px 25px; /* Adjusted padding */
+    width: 100%;
+    border: 1px solid #ced4da; /* Slightly darker border */
+    border-radius: 6px;
+    text-align: left;
+    outline: none;
+    font-size: 1.15em; /* Slightly larger */
+    margin-top: 20px;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.collapsible::after {
+    content: '\002B'; /* Plus sign */
+    font-size: 1.2em; /* Larger icon */
+    font-weight: bold;
+    color: #007bff;
+    float: right;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+.collapsible.active::after {
+    content: "\2212"; /* Minus sign */
+    transform: rotate(180deg); /* Keep rotation for effect */
+}
+.collapsible:hover {
+    background: linear-gradient(to bottom, #e9ecef, #dde2e6); /* Darker gradient on hover */
+    color: #004085;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.collapsible.active {
+     background: linear-gradient(to bottom, #e9ecef, #dde2e6);
+     border-bottom-left-radius: 0;
+     border-bottom-right-radius: 0;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.content {
+    padding: 20px 30px; /* Increased padding */
+    display: none;
+    overflow: hidden;
+    background-color: #fdfdff; /* Very light background */
+    margin-top: 0;
+    border: 1px solid #ced4da; /* Match button border */
+    border-top: none;
+    border-radius: 0 0 6px 6px; /* Match button radius */
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.04);
+    line-height: 1.7; /* Ensure consistent line height */
+}
+.content p {
+    padding: 5px 0; /* Reduced padding */
+    font-size: 0.95em;
+}
+
+.content p:first-child {
+    margin-top: 0;
+}
+
+.content p:last-child {
+    margin-bottom: 0;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.slide-in {
+    animation: slideIn 0.5s ease-in-out;
+}
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fullscreen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Darker overlay */
+    backdrop-filter: blur(5px); /* Add blur effect */
+    z-index: 1001;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.fullscreen-overlay img {
+    max-width: 90%;
+    max-height: 85%; /* Allow slightly more height */
+    transition: transform 0.15s ease; /* Slightly smoother zoom */
+    border-radius: 6px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Shadow for the image */
+}
+.fullscreen-caption {
+    color: #eee; /* Lighter caption */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Text shadow for readability */
+}
+.zoom-container {
+    position: absolute;
+    bottom: 20px; /* Adjust position */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center alignment trick */
+    display: flex;
+    gap: 10px; /* Add gap between buttons */
+    z-index: 1002;
+}
+.zoom-in, .zoom-out {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: none;
+    color: #0056b3;
+    padding: 10px 18px; /* Adjusted padding */
+    font-size: 1.1em; /* Larger icons/text */
+    cursor: pointer;
+    border-radius: 50px; /* Pill shape */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    transition: all 0.2s ease; /* Smooth transition */
+}
+.zoom-in:hover, .zoom-out:hover {
+    background-color: #007bff;
+    color: #fff;
+    transform: scale(1.08); /* Slightly larger scale */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.zoom-in:disabled, .zoom-out:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    background-color: rgba(200, 200, 200, 0.8);
+}
+
+.fullscreen-overlay button[aria-label="Close full screen image view"] {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 28px; /* Larger */
+    cursor: pointer;
+    color: #333;
+    width: 40px; /* Larger */
+    height: 40px; /* Larger */
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.fullscreen-overlay button[aria-label="Close full screen image view"]:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1) rotate(90deg); /* Add rotation effect */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+    background: linear-gradient(rgba(0,86,179,0.7), rgba(0,86,179,0.7)), url('images/hero-banner.jpg') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+}
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+}
+.btn-primary {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+        line-height: 1.6; /* Adjust line height */
+    }
+    .container {
+        width: 95%;
+        padding: 25px; /* Adjust padding */
+        margin: 25px auto;
+        border-radius: 8px; /* Slightly less rounded */
+    }
+    .navbar a {
+        padding: 14px 18px; /* Adjust padding */
+        font-size: 0.95em;
+    }
+    h2 {
+        font-size: 1.7em;
+        margin-bottom: 25px;
+        padding-bottom: 12px;
+    }
+    h3 {
+        font-size: 1.35em;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+    .image-container img {
+        width: 100%; /* Full width on mobile */
+        max-width: none; /* Remove max-width */
+    }
+    .collapsible {
+        font-size: 1.05em;
+        padding: 16px 20px;
+    }
+    .content {
+        padding: 15px 20px;
+    }
+    .callout {
+        padding: 15px 20px;
+        font-size: 0.95em;
+    }
+    .zoom-container {
+        bottom: 15px;
+    }
+    .zoom-in, .zoom-out {
+        padding: 8px 15px;
+        font-size: 1em;
+    }
+    .fullscreen-overlay button[aria-label="Close full screen image view"] {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        font-size: 17px; /* Slightly larger base for large screens */
+    }
+    .container {
+        padding: 45px; /* More padding on large screens */
+        max-width: 1100px; /* Wider max-width */
+    }
+    h2 {
+        font-size: 2.2em;
+    }
+    h3 {
+        font-size: 1.6em;
+    }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block; /* Or block, depending on layout */
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 115%; /* Position above the element */
+  left: 50%;
+  margin-left: -80px; /* Use half of the width to center */
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  font-size: 0.85em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
