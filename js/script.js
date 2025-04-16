@@ -1,197 +1,240 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Collapsible Sections --- //
-    const collapsibles = document.querySelectorAll(".collapsible");
-    collapsibles.forEach(coll => {
-        coll.addEventListener("click", function() {
-            this.classList.toggle("active");
-            const content = this.nextElementSibling;
-            const isExpanded = this.classList.contains("active");
-            this.setAttribute('aria-expanded', isExpanded);
-
-            if (isExpanded) {
-                // Expand: Set max-height to scrollHeight for animation
-                content.style.display = "block"; // Need display block to measure scrollHeight
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.style.opacity = 1;
-            } else {
-                // Collapse: Set max-height to 0
-                content.style.maxHeight = "0px";
-                content.style.opacity = 0;
-                // Optional: Hide after transition completes
-                content.addEventListener('transitionend', () => {
-                    if (!this.classList.contains("active")) {
-                        content.style.display = "none";
-                    }
-                }, { once: true });
-            }
-        });
-
-        // Set initial state for non-active collapsibles
-        const content = coll.nextElementSibling;
-        if (!coll.classList.contains("active")) {
-            content.style.maxHeight = "0px";
-            content.style.opacity = 0;
-            content.style.display = "none"; // Start hidden
-        }
-    });
-
-    // --- Image Fullscreen Overlay --- //
-    const images = document.querySelectorAll('.image-container img');
-    const overlay = document.getElementById('fullscreen-overlay');
-    const fullscreenImg = document.getElementById('fullscreen-img');
-    const fullscreenCaption = document.getElementById('fullscreen-caption');
-    const zoomInButton = document.getElementById('zoom-in');
-    const zoomOutButton = document.getElementById('zoom-out');
-    const closeButton = overlay.querySelector('button[aria-label="Close full screen image view"]');
-    let currentScale = 1;
-    let lastFocusedElement = null; // To return focus
-
-    images.forEach(image => {
-        image.addEventListener('click', function() {
-            lastFocusedElement = document.activeElement; // Store focus
-            fullscreenImg.src = this.src;
-            fullscreenCaption.textContent = this.nextElementSibling.textContent;
-            overlay.setAttribute('aria-label', this.alt || 'Full-screen image view');
-            overlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
-            resetZoom();
-            // Focus trapping setup
-            overlay.focus(); // Focus the overlay first
-            setupFocusTrap();
-        });
-    });
-
-    function closeOverlay() {
-        overlay.style.display = 'none';
-        fullscreenImg.src = "";
-        document.body.style.overflow = ''; // Restore background scroll
-        if (lastFocusedElement) {
-            lastFocusedElement.focus(); // Return focus
-        }
-    }
-
-    function resetZoom() {
-        currentScale = 1;
-        fullscreenImg.style.transform = 'scale(1)';
-        updateButtonVisibility();
-    }
-
-    function updateButtonVisibility() {
-        zoomOutButton.disabled = (currentScale <= 1);
-        zoomInButton.disabled = (currentScale >= 5);
-    }
-
-    function zoom(delta) {
-        currentScale = Math.max(1, Math.min(5, currentScale + delta));
-        fullscreenImg.style.transform = `scale(${currentScale})`;
-        updateButtonVisibility();
-    }
-
-    overlay.addEventListener('click', (event) => {
-        if (event.target === overlay) {
-            closeOverlay();
-        }
-    });
-
-    closeButton.addEventListener('click', closeOverlay);
-
-    overlay.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            closeOverlay();
-        }
-    });
-
-    zoomInButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        zoom(0.2);
-    });
-
-    zoomOutButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        zoom(-0.2);
-    });
-
-    fullscreenImg.addEventListener('wheel', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        zoom(event.deltaY < 0 ? 0.2 : -0.2);
-    });
-
-    // Prevent clicks on image/caption/buttons closing overlay
-    [fullscreenImg, fullscreenCaption, zoomInButton, zoomOutButton].forEach(el => {
-        el.addEventListener('click', event => event.stopPropagation());
-    });
-
-    // Basic Focus Trapping
-    let focusableElements = [];
-    function setupFocusTrap() {
-        focusableElements = Array.from(overlay.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        )).filter(el => el.offsetParent !== null); // Only visible elements
-        if (focusableElements.length > 0) {
-            focusableElements[0].focus(); // Focus the first element (usually close button)
-        }
-        overlay.addEventListener('keydown', handleFocusTrap);
-    }
-
-    function handleFocusTrap(event) {
-        if (event.key === 'Tab') {
-            const firstElement = focusableElements[0];
-            const lastElement = focusableElements[focusableElements.length - 1];
-
-            if (event.shiftKey) { // Shift + Tab
-                if (document.activeElement === firstElement) {
-                    lastElement.focus();
-                    event.preventDefault();
-                }
-            } else { // Tab
-                if (document.activeElement === lastElement) {
-                    firstElement.focus();
-                    event.preventDefault();
-                }
-            }
-        }
-    }
-
-    // --- Navbar Active Link Highlighting on Scroll --- //
+    // --- Navbar Active State on Scroll ---
     const sections = document.querySelectorAll('.container[id]'); // Select containers with IDs
     const navLinks = document.querySelectorAll('.navbar a');
 
-    function changeNav() {
-        let index = sections.length;
+    const activateNavLink = () => {
+        let currentSectionId = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100; // Adjust offset as needed
+            const sectionHeight = section.offsetHeight;
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
 
-        while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
-
-        navLinks.forEach((link) => link.classList.remove('active'));
-        // Ensure the link exists before trying to add class
-        const activeLink = document.querySelector(`.navbar a[href*=\"${sections[index].id}\"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
+        // If scrolled to the top or bottom, handle edge cases
+        if (window.scrollY < sections[0].offsetTop - 100) {
+            currentSectionId = sections[0].getAttribute('id');
+        } else if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+            // Check if near the bottom, activate the last section's link
+            currentSectionId = sections[sections.length - 1].getAttribute('id');
         }
-    }
 
-    // Initial call
-    changeNav();
-    // Add listener
-    window.addEventListener('scroll', changeNav);
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
+    };
 
-    // --- Smooth Scrolling for Navbar Links --- //
-    navLinks.forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if(targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.addEventListener('scroll', activateNavLink);
+    activateNavLink(); // Initial check on load
+
+    // --- Smooth Scrolling --- (Optional, browser support is good now, but can be added)
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const offsetTop = targetElement.offsetTop - 70; // Adjust for sticky navbar height
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
 
-    // --- Staggered Animation for Containers --- //
-    const animatedContainers = document.querySelectorAll('.container');
-    animatedContainers.forEach((container, index) => {
-        container.style.setProperty('--order', index);
+    // --- Collapsible Sections ---
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(button => {
+        button.addEventListener('click', function() {
+            this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
+            const content = document.getElementById(this.getAttribute('aria-controls'));
+            if (content.style.maxHeight) {
+                content.style.padding = '0 18px'; // Collapse padding first
+                content.style.maxHeight = null;
+            } else {
+                content.style.padding = '1rem 18px'; // Expand padding
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    });
+
+    // --- Image Fullscreen Overlay & Zoom/Pan ---
+    const overlay = document.getElementById('fullscreen-overlay');
+    const fullscreenImg = document.getElementById('fullscreen-img');
+    const fullscreenCaption = document.getElementById('fullscreen-caption');
+    const imageContainers = document.querySelectorAll('.image-container');
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+
+    let currentZoom = 1;
+    let isDragging = false;
+    let startX, startY, translateX = 0, translateY = 0;
+
+    imageContainers.forEach(container => {
+        const img = container.querySelector('img');
+        const caption = container.querySelector('.caption');
+        if (img) {
+            img.addEventListener('click', () => {
+                fullscreenImg.src = img.src;
+                fullscreenCaption.textContent = caption ? caption.textContent : '';
+                overlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                resetZoomAndPan();
+            });
+        }
+    });
+
+    const closeOverlay = () => {
+        overlay.style.display = 'none';
+        fullscreenImg.src = ''; // Clear image source
+        fullscreenCaption.textContent = '';
+        document.body.style.overflow = ''; // Restore scrolling
+    };
+
+    // Close overlay by clicking outside the image (on the overlay itself)
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) { // Ensure click is on the overlay, not the image/buttons
+            closeOverlay();
+        }
+    });
+
+    // Close with Escape key (handled in CSS/HTML via button, but good practice)
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.style.display === 'flex') {
+            closeOverlay();
+        }
+    });
+
+    // --- Zoom Functionality ---
+    const applyTransform = () => {
+        fullscreenImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+    };
+
+    const resetZoomAndPan = () => {
+        currentZoom = 1;
+        translateX = 0;
+        translateY = 0;
+        applyTransform();
+        fullscreenImg.style.cursor = 'grab';
+    };
+
+    zoomInBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent overlay click
+        currentZoom = Math.min(currentZoom * 1.3, 5); // Limit max zoom
+        applyTransform();
+    });
+
+    zoomOutBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent overlay click
+        currentZoom = Math.max(currentZoom / 1.3, 0.5); // Limit min zoom
+        applyTransform();
+    });
+
+    // --- Pan Functionality ---
+    fullscreenImg.addEventListener('mousedown', (e) => {
+        if (currentZoom <= 1) return; // Only allow panning when zoomed
+        e.preventDefault(); // Prevent default image dragging
+        isDragging = true;
+        startX = e.pageX - translateX;
+        startY = e.pageY - translateY;
+        fullscreenImg.style.cursor = 'grabbing';
+        fullscreenImg.classList.add('grabbing'); // Add class for potential styling
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        translateX = e.pageX - startX;
+        translateY = e.pageY - startY;
+        applyTransform();
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            fullscreenImg.style.cursor = 'grab';
+            fullscreenImg.classList.remove('grabbing');
+        }
+    });
+
+    // Prevent dragging state sticking if mouse leaves window
+    document.addEventListener('mouseleave', () => {
+        if (isDragging) {
+            isDragging = false;
+            fullscreenImg.style.cursor = 'grab';
+            fullscreenImg.classList.remove('grabbing');
+        }
+    });
+
+    // Handle wheel zoom (optional)
+    fullscreenImg.addEventListener('wheel', (e) => {
+        if (overlay.style.display !== 'flex') return;
+        e.preventDefault();
+        e.stopPropagation();
+        const delta = e.deltaY > 0 ? -0.1 : 0.1; // Zoom direction
+        const zoomFactor = 1 + delta;
+        const newZoom = Math.max(0.5, Math.min(currentZoom * zoomFactor, 5)); // Apply limits
+
+        // Adjust translate to zoom towards mouse pointer
+        const rect = fullscreenImg.getBoundingClientRect();
+        const offsetX = (e.clientX - rect.left) / currentZoom; // Mouse position relative to image, scaled
+        const offsetY = (e.clientY - rect.top) / currentZoom;
+
+        translateX -= offsetX * (newZoom - currentZoom);
+        translateY -= offsetY * (newZoom - currentZoom);
+
+        currentZoom = newZoom;
+        applyTransform();
+    }, { passive: false });
+
+    // --- Simple Scroll Animations for Containers ---
+    const containers = document.querySelectorAll('.container');
+    const observerOptions = {
+        root: null, // relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    };
+
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: unobserve after animation to save resources
+                // observer.unobserve(entry.target);
+            }
+            // Optional: remove class if scrolling back up
+            // else {
+            //     entry.target.classList.remove('visible');
+            // }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    containers.forEach(container => {
+        observer.observe(container);
     });
 
 });
+
+// Make closeOverlay globally accessible if called directly from HTML onclick
+function closeOverlay() {
+    const overlay = document.getElementById('fullscreen-overlay');
+    const fullscreenImg = document.getElementById('fullscreen-img');
+    const fullscreenCaption = document.getElementById('fullscreen-caption');
+    if (overlay) {
+        overlay.style.display = 'none';
+        if (fullscreenImg) fullscreenImg.src = '';
+        if (fullscreenCaption) fullscreenCaption.textContent = '';
+        document.body.style.overflow = '';
+    }
+}
