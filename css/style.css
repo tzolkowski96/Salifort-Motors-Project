@@ -1,157 +1,176 @@
 /* General Styles */
 body {
-    font-family: 'Roboto', sans-serif; /* Professional font */
+    font-family: 'Inter', 'Roboto', sans-serif; /* Modern font stack */
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; /* Slightly lighter grey */
-    color: #343a40; /* Dark grey text for readability */
-    line-height: 1.6;
+    background-color: #f8f9fa; /* Lighter, cleaner background */
+    color: #212529; /* Darker text for better contrast */
+    line-height: 1.7; /* Increased line height for readability */
+    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit */
+    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
 }
 
 /* Header */
 .header {
-    background: linear-gradient(135deg, #0d6efd, #0056b3); /* Updated blue gradient */
-    color: white;
+    background: #ffffff; /* Clean white background */
+    color: #212529; /* Dark text */
     text-align: center;
-    padding: 3.5rem 1rem; /* Slightly adjusted padding */
-    margin-bottom: 0; /* Remove bottom margin */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    padding: 3rem 1rem; /* Adjusted padding */
+    margin-bottom: 0;
+    border-bottom: 1px solid #dee2e6; /* Subtle separator */
 }
 
 .header h1 {
-    margin: 0;
-    font-size: 2.5rem; /* Larger title */
+    margin: 0 0 0.5rem 0; /* Add some bottom margin */
+    font-size: 2.8rem; /* Slightly larger */
     font-weight: 700;
+    color: #343a40; /* Slightly softer dark color */
 }
 
 .header p {
-    font-size: 1.1rem;
-    font-style: italic;
-    opacity: 0.9;
+    font-size: 1.15rem; /* Slightly larger */
+    font-style: normal; /* Remove italics for cleaner look */
+    opacity: 0.8;
+    color: #495057; /* Softer grey */
 }
 
 /* Navigation Bar */
 .navbar {
-    background-color: #ffffff; /* White background */
+    background-color: #ffffff;
     overflow: hidden;
-    position: sticky; /* Make navbar sticky */
+    position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Softer shadow */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center items */
-    padding: 0.5rem 0; /* Add some padding */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+    display: flex;
+    justify-content: center;
+    padding: 0.6rem 0; /* Adjusted padding */
+    border-bottom: 1px solid #e9ecef; /* Subtle bottom border */
 }
 
 .navbar a {
     display: block;
-    color: #0056b3; /* Link color */
+    color: #495057; /* Softer link color */
     text-align: center;
-    padding: 14px 20px;
+    padding: 12px 22px; /* Adjusted padding */
     text-decoration: none;
     font-size: 1rem;
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+    font-weight: 500; /* Medium weight */
+    transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out; /* Smooth transition */
+    border-bottom: 2px solid transparent; /* For active state indicator */
+    margin: 0 5px; /* Add spacing between links */
 }
 
 .navbar a:hover {
-    background-color: #e9ecef; /* Light grey hover */
-    color: #003d80; /* Darker blue on hover */
+    color: #0056b3; /* Accent color on hover */
+    background-color: transparent; /* Remove background hover */
+    border-bottom-color: #ced4da; /* Subtle underline hint on hover */
 }
 
 .navbar a.active {
-    background-color: #0056b3; /* Active link background */
-    color: white;
+    color: #0056b3; /* Accent color for active */
+    background-color: transparent;
+    border-bottom-color: #0056b3; /* Accent underline for active */
+    font-weight: 600; /* Slightly bolder active link */
 }
 
 /* Container and Section Styling */
 .container {
-    max-width: 960px; /* Limit content width */
-    margin: 2.5rem auto; /* Increased vertical margin */
-    padding: 1.5rem 2rem; /* Adjusted padding */
-    background-color: #ffffff; /* White background for content */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04); /* Very subtle shadow */
+    max-width: 1024px; /* Slightly wider */
+    margin: 3rem auto; /* Increased vertical margin */
+    padding: 2rem 2.5rem; /* Adjusted padding */
+    background-color: #ffffff;
+    border-radius: 6px; /* Softer radius */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03); /* Very subtle shadow */
+    border: 1px solid #e9ecef; /* Subtle border */
 }
 
 .section {
-    margin-bottom: 2.5rem; /* Increased bottom margin */
+    margin-bottom: 3rem; /* Increased spacing */
+}
+
+.section:last-of-type {
+    margin-bottom: 0; /* Remove margin from last section */
 }
 
 .section h2 {
-    color: #0056b3; /* Section header color */
-    border-bottom: 2px solid #dee2e6; /* Subtle separator */
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.8rem; /* Increased margin */
-    font-size: 1.8rem;
+    color: #343a40; /* Darker heading */
+    border-bottom: 1px solid #e9ecef; /* Lighter separator */
+    padding-bottom: 0.8rem;
+    margin-bottom: 2rem; /* Increased margin */
+    font-size: 2rem; /* Adjusted size */
+    font-weight: 600; /* Semi-bold */
 }
 
 .section h3 {
-    color: #0069d9; /* Slightly lighter blue for H3 */
-    margin-top: 2rem; /* Increased margin */
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    color: #495057; /* Softer H3 */
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 .section h4 {
-    color: #343a40;
-    margin-top: 1.5rem; /* Increased margin */
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-    font-weight: 700;
+    color: #212529;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
 /* Image Styling */
 .image-container {
-    text-align: center; /* Center images */
-    margin: 2.5rem 0; /* Increased margin */
-    position: relative; /* Needed for tooltip positioning */
-    cursor: pointer; /* Indicate images are clickable */
-    transition: transform 0.3s ease; /* Smooth zoom effect on hover */
+    text-align: center;
+    margin: 3rem 0; /* Increased margin */
+    position: relative;
+    cursor: pointer;
 }
 
 .image-container:hover img {
-    border-color: #0056b3; /* Add border color change on hover */
+    /* Remove border change on hover for cleaner look */
+    transform: scale(1.02); /* Subtle scale effect on hover */
 }
 
 .image-container img {
-    max-width: 80%; /* Limit image width */
+    max-width: 85%; /* Adjusted max-width */
     height: auto;
-    display: block; /* Remove extra space below image */
-    margin: 0 auto 0.5rem auto; /* Center image and add bottom margin */
-    border-radius: 4px; /* Slightly rounded corners */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Softer shadow */
-    border: 2px solid transparent; /* Add transparent border for smooth hover transition */
-    transition: border-color 0.3s ease; /* Add transition for border */
+    display: block;
+    margin: 0 auto 0.8rem auto; /* Adjusted margin */
+    border-radius: 5px; /* Consistent radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06); /* Slightly softer shadow */
+    border: 1px solid #e9ecef; /* Subtle border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
 .caption {
-    font-size: 0.9rem;
-    color: #6c757d; /* Grey caption text */
-    margin-top: 0.5rem;
+    font-size: 0.95rem; /* Slightly larger caption */
+    color: #6c757d;
+    margin-top: 0.8rem;
 }
 
 /* Tooltip Styling */
 .tooltip {
     position: relative;
-    display: inline-block; /* Or block, depending on layout */
+    display: inline-block;
 }
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 160px;
-    background-color: #555;
+    width: 180px; /* Slightly wider */
+    background-color: #343a40; /* Darker background */
     color: #fff;
     text-align: center;
-    border-radius: 6px;
-    padding: 5px 10px;
+    border-radius: 4px; /* Consistent radius */
+    padding: 8px 12px; /* Adjusted padding */
     position: absolute;
     z-index: 1;
-    bottom: 110%; /* Position above the element */
+    bottom: 115%; /* Position slightly higher */
     left: 50%;
-    margin-left: -80px; /* Use half of the width to center */
+    margin-left: -90px; /* Center tooltip */
     opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 0.85rem;
+    transition: opacity 0.3s ease;
+    font-size: 0.88rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Subtle shadow */
 }
 
 .tooltip:hover .tooltiptext {
@@ -161,86 +180,102 @@ body {
 
 /* Highlight Span */
 .highlight {
-    background-color: #e7f3ff; /* Light blue highlight */
-    padding: 0.1em 0.3em;
+    background-color: #cfe2ff; /* Softer blue highlight */
+    padding: 0.2em 0.4em;
     border-radius: 3px;
-    font-weight: bold;
-    color: #0056b3;
+    font-weight: 500; /* Medium weight */
+    color: #0a367a; /* Darker blue text for contrast */
 }
 
 /* Lists */
 ul, ol {
-    padding-left: 20px;
-    margin-bottom: 1rem;
+    padding-left: 25px; /* Slightly more padding */
+    margin-bottom: 1.2rem;
 }
 
 li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
 }
 
 /* Collapsible Section */
 .collapsible {
-    background-color: #f1f3f5; /* Lighter grey background */
-    color: #495057;
+    background-color: #f1f3f5;
+    color: #343a40; /* Darker text */
     cursor: pointer;
-    padding: 12px 18px;
+    padding: 14px 20px; /* Adjusted padding */
     width: 100%;
-    border: none;
+    border: 1px solid #dee2e6; /* Add border */
     text-align: left;
     outline: none;
-    font-size: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-    font-weight: bold;
+    font-size: 1.05rem; /* Slightly larger */
+    margin-top: 1.5rem;
+    margin-bottom: 0; /* Remove bottom margin */
+    border-radius: 4px 4px 0 0; /* Round top corners */
+    transition: background-color 0.2s ease;
+    font-weight: 600; /* Semi-bold */
+    position: relative; /* For icon positioning */
 }
 
 .collapsible:hover {
-    background-color: #e9ecef; /* Slightly darker grey on hover */
+    background-color: #e9ecef;
 }
 
 .collapsible:after {
-    content: '\002B'; /* Plus sign */
-    color: #0056b3;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
+    /* Using SVG for cleaner icons */
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230056b3'%3E%3Cpath fill-rule='evenodd' d='M8 2a.75.75 0 0 1 .75.75v4.5h4.5a.75.75 0 0 1 0 1.5h-4.5v4.5a.75.75 0 0 1-1.5 0v-4.5h-4.5a.75.75 0 0 1 0-1.5h4.5v-4.5A.75.75 0 0 1 8 2Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute; /* Position icon */
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease-out;
 }
 
 .collapsible[aria-expanded="true"]:after {
-    content: "\2212"; /* Minus sign */
+    /* Rotate plus to minus */
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230056b3'%3E%3Cpath fill-rule='evenodd' d='M2 8a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 8Z'/%3E%3C/svg%3E");
 }
 
 .content {
-    padding: 0 18px;
+    padding: 0 20px; /* Adjusted padding */
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-    background-color: #f8f9fa;
-    border-radius: 0 0 4px 4px;
-    margin-bottom: 1rem;
-    border: 1px solid #e9ecef; /* Subtle border */
+    transition: max-height 0.35s ease-out, padding 0.35s ease-out; /* Smoother transition */
+    background-color: #ffffff; /* White background */
+    border-radius: 0 0 4px 4px; /* Round bottom corners */
+    margin-bottom: 1.5rem;
+    border: 1px solid #dee2e6;
     border-top: none;
 }
 
-.content p {
-    margin-top: 1rem;
+.content p:first-child {
+    margin-top: 1.5rem; /* Add padding to first paragraph */
 }
+.content p:last-child {
+    margin-bottom: 1.5rem; /* Add padding to last paragraph */
+}
+
 
 /* Footer */
 .footer {
     text-align: center;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    background-color: #343a40; /* Dark footer */
-    color: #adb5bd; /* Light grey text */
-    font-size: 0.9rem;
+    padding: 2rem 1rem; /* Increased padding */
+    margin-top: 3rem;
+    background-color: #e9ecef; /* Lighter footer */
+    color: #495057; /* Darker text */
+    font-size: 0.95rem;
+    border-top: 1px solid #dee2e6; /* Subtle top border */
 }
 
 .footer a {
-    color: #ffffff; /* White link */
+    color: #0056b3; /* Accent color link */
     text-decoration: none;
+    font-weight: 500;
 }
 
 .footer a:hover {
@@ -254,52 +289,59 @@ li {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Slightly darker overlay */
-    display: none; /* Hidden by default */
+    background-color: rgba(33, 37, 41, 0.92); /* Darker overlay, less transparent */
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 2000;
     cursor: zoom-out;
+    padding: 20px; /* Add padding */
+    box-sizing: border-box;
 }
 
 .fullscreen-overlay img {
-    max-width: 90%;
-    max-height: 80%;
+    max-width: calc(100% - 40px); /* Respect padding */
+    max-height: calc(100% - 100px); /* Respect padding and space for controls/caption */
     object-fit: contain;
-    cursor: grab; /* Indicate draggable */
-    transition: transform 0.2s ease-out; /* Smooth zoom transition */
-    background-color: #ffffff; /* Add white background for PNGs */
-}
-
-.fullscreen-overlay img.grabbing {
-    cursor: grabbing;
+    cursor: grab;
+    transition: transform 0.2s ease-out;
+    background-color: #ffffff;
+    border-radius: 4px; /* Add slight radius */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Add shadow */
 }
 
 .fullscreen-caption {
     position: absolute;
-    bottom: 20px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px 15px;
+    bottom: 25px; /* Adjusted position */
+    color: #f8f9fa; /* Lighter text */
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px; /* Adjusted padding */
     border-radius: 4px;
     font-size: 1rem;
+    max-width: 80%;
+    text-align: center;
 }
 
 .zoom-container {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    bottom: 70px; /* Position above caption */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
     display: flex;
     gap: 10px;
+    background-color: rgba(52, 58, 64, 0.8); /* Semi-transparent background */
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
 .zoom-container button {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 6px 10px; /* Smaller buttons */
+    border-radius: 3px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    color: #343a40;
     transition: background-color 0.2s;
 }
 
@@ -310,44 +352,137 @@ li {
 /* Style for the close button */
 #close-fullscreen-btn {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px; /* Adjusted position */
+    right: 20px; /* Adjusted position */
     background-color: rgba(255, 255, 255, 0.8);
     color: #333;
     border: none;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    line-height: 30px; /* Center the '×' */
+    width: 35px; /* Slightly larger */
+    height: 35px;
+    font-size: 24px;
+    line-height: 35px;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
 
 #close-fullscreen-btn:hover {
     background-color: white;
     color: #000;
+    transform: scale(1.1); /* Slight scale on hover */
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 90%; /* Use percentage for better fluidity */
+        padding: 1.5rem 2rem;
+    }
+}
+
 @media (max-width: 768px) {
+    body {
+        line-height: 1.65;
+    }
     .header h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+    .header p {
+        font-size: 1.05rem;
+    }
+    .navbar {
+        padding: 0.4rem 0;
+        justify-content: center; /* Keep centered */
+        flex-wrap: wrap; /* Allow wrapping */
+    }
+    .navbar a {
+        padding: 10px 15px; /* Adjust padding */
+        font-size: 0.95rem;
+        margin: 3px; /* Adjust margin for wrapping */
+    }
+    .container {
+        margin: 2rem auto;
+        padding: 1.5rem;
+        max-width: 92%;
+    }
+    .section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    .section h3 {
+        font-size: 1.4rem;
+    }
+    .image-container img {
+        max-width: 95%;
+    }
+    .tooltip .tooltiptext {
+        width: 150px;
+        margin-left: -75px;
+    }
+    .collapsible {
+        font-size: 1rem;
+        padding: 12px 18px;
+    }
+    .collapsible:after {
+        right: 18px;
+    }
+    .content {
+        padding: 0 18px;
+    }
+    .fullscreen-overlay img {
+        max-width: calc(100% - 20px);
+        max-height: calc(100% - 80px);
+    }
+    .fullscreen-caption {
+        bottom: 15px;
+        font-size: 0.9rem;
+    }
+    .zoom-container {
+        bottom: 55px;
+    }
+    #close-fullscreen-btn {
+        top: 15px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px; /* Adjust base font size */
+    }
+    .header {
+        padding: 2rem 1rem;
+    }
+    .header h1 {
+        font-size: 1.9rem;
     }
     .header p {
         font-size: 1rem;
     }
     .navbar {
-        justify-content: space-around; /* Better spacing on smaller screens */
+        padding: 0.5rem 0;
+        position: static; /* Remove sticky */
     }
     .navbar a {
-        padding: 12px 10px;
+        padding: 10px 12px;
         font-size: 0.9rem;
+        flex-grow: 1; /* Allow links to fill space */
+        margin: 2px;
     }
     .container {
-        margin: 1rem auto;
-        padding: 1rem;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+        border-top: 1px solid #e9ecef;
+        border-bottom: 1px solid #e9ecef;
+        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        max-width: 100%;
     }
     .section h2 {
         font-size: 1.6rem;
@@ -355,45 +490,27 @@ li {
     .section h3 {
         font-size: 1.3rem;
     }
-    .image-container img {
-        max-width: 95%; /* Allow images to be larger on small screens */
+    .footer {
+        padding: 1.5rem 1rem;
     }
-    .tooltip .tooltiptext {
-        width: 120px;
-        margin-left: -60px;
+    .fullscreen-caption {
+        font-size: 0.85rem;
+        bottom: 10px;
+        padding: 6px 10px;
+    }
+    .zoom-container {
+        bottom: 45px;
+        padding: 6px 10px;
+    }
+    .zoom-container button {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+    #close-fullscreen-btn {
+        top: 10px;
+        right: 10px;
     }
 }
 
-@media (max-width: 480px) {
-    .header {
-        padding: 2rem 1rem;
-    }
-    .navbar {
-        flex-direction: column; /* Stack nav items */
-        align-items: center;
-        position: static; /* Remove sticky on very small screens */
-    }
-    .navbar a {
-        width: 100%;
-        box-sizing: border-box;
-        border-bottom: 1px solid #eee;
-    }
-    .navbar a:last-child {
-        border-bottom: none;
-    }
-    .container {
-        border-radius: 0;
-        box-shadow: none;
-        margin: 0;
-        padding: 1rem;
-    }
-    .fullscreen-caption {
-        font-size: 0.9rem;
-        bottom: 10px;
-        padding: 5px 10px;
-    }
-    .zoom-container {
-        top: 10px;
-        left: 10px;
-    }
-}
+/* Add Inter font from Google Fonts if not already included */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
