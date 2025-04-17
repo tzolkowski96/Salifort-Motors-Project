@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageContainers = document.querySelectorAll('.image-container');
     const zoomInBtn = document.getElementById('zoom-in');
     const zoomOutBtn = document.getElementById('zoom-out');
+    const closeBtn = document.getElementById('close-fullscreen-btn'); // Get the close button
 
     let currentZoom = 1;
     let isDragging = false;
@@ -108,7 +109,13 @@ document.addEventListener('DOMContentLoaded', () => {
         fullscreenImg.src = ''; // Clear image source
         fullscreenCaption.textContent = '';
         document.body.style.overflow = ''; // Restore scrolling
+        resetZoomAndPan(); // Reset zoom/pan state when closing
     };
+
+    // Attach listener to the close button
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeOverlay);
+    }
 
     // Close overlay by clicking outside the image (on the overlay itself)
     overlay.addEventListener('click', (e) => {
@@ -117,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close with Escape key (handled in CSS/HTML via button, but good practice)
+    // Close with Escape key
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && overlay.style.display === 'flex') {
             closeOverlay();
@@ -135,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         translateY = 0;
         applyTransform();
         fullscreenImg.style.cursor = 'grab';
+        fullscreenImg.classList.remove('grabbing'); // Ensure grabbing class is removed
     };
 
     zoomInBtn.addEventListener('click', (e) => {
@@ -207,16 +215,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: false });
 
 });
-
-// Make closeOverlay globally accessible if called directly from HTML onclick
-function closeOverlay() {
-    const overlay = document.getElementById('fullscreen-overlay');
-    const fullscreenImg = document.getElementById('fullscreen-img');
-    const fullscreenCaption = document.getElementById('fullscreen-caption');
-    if (overlay) {
-        overlay.style.display = 'none';
-        if (fullscreenImg) fullscreenImg.src = '';
-        if (fullscreenCaption) fullscreenCaption.textContent = '';
-        document.body.style.overflow = '';
-    }
-}
