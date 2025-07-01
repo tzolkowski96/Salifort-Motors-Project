@@ -1,5 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Scroll Progress Indicator ---
+    const createScrollIndicator = () => {
+        const indicator = document.createElement('div');
+        indicator.className = 'scroll-indicator';
+        document.body.prepend(indicator);
+        
+        const updateScrollProgress = () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            indicator.style.width = Math.min(scrollPercent, 100) + '%';
+        };
+        
+        window.addEventListener('scroll', updateScrollProgress);
+        updateScrollProgress(); // Initial call
+    };
+    
+    createScrollIndicator();
+
     // --- Navbar Active State on Scroll ---
     const sections = document.querySelectorAll('.container[id]'); // Select containers with IDs
     const navLinks = document.querySelectorAll('.navbar a');
