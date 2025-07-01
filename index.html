@@ -20,6 +20,7 @@
         <a href="#clues">Finding Clues</a>
         <a href="#predictions">Making Predictions</a>
         <a href="#solutions">Solutions</a>
+        <a href="#code">Code Showcase</a>
         <a href="#about">About</a>
     </nav>
 
@@ -235,6 +236,242 @@
                 <li><b>Keep the Model Fresh:</b> Regularly retrain the predictive model with new employee data to ensure it remains accurate and relevant as the company evolves.</li>
             </ul>
             <p>By taking these steps, Salifort Motors can shift from reacting to turnover to proactively building an environment where talented people choose to build their careers.</p>
+        </section>
+
+        <section id="code" class="container section" data-aos="fade-up" aria-labelledby="code-heading">
+            <h2 id="code-heading">Code Showcase: Behind the Analysis</h2>
+            <p>Here are some key code snippets that powered this analysis. These examples demonstrate the data science workflow from exploration to model building and evaluation.</p>
+            
+            <h3>Data Exploration & Preprocessing</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Python</span>
+                    <button class="copy-btn" aria-label="Copy code">Copy</button>
+                </div>
+                <pre><code class="language-python"># Initial data exploration and cleaning
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset
+df = pd.read_csv('HR_capstone_dataset.csv')
+
+# Quick overview of the dataset
+print(f"Dataset shape: {df.shape}")
+print(f"Missing values:\n{df.isnull().sum()}")
+print(f"Data types:\n{df.dtypes}")
+
+# Check for duplicates
+print(f"Duplicate rows: {df.duplicated().sum()}")
+
+# Statistical summary
+df.describe()</code></pre>
+            </div>
+
+            <h3>Feature Engineering & Correlation Analysis</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Python</span>
+                    <button class="copy-btn" aria-label="Copy code">Copy</button>
+                </div>
+                <pre><code class="language-python"># Create correlation matrix for key numerical features
+numerical_features = ['satisfaction_level', 'last_evaluation', 
+                      'number_project', 'average_montly_hours', 
+                      'time_spend_company', 'left']
+
+# Calculate correlation matrix
+correlation_matrix = df[numerical_features].corr()
+
+# Create heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='RdYlBu_r', 
+            center=0, square=True, fmt='.2f')
+plt.title('Correlation Heatmap of Employee Features')
+plt.tight_layout()
+plt.show()
+
+# Identify strong correlations with turnover
+turnover_correlations = correlation_matrix['left'].sort_values(ascending=False)
+print("Correlations with employee turnover:")
+print(turnover_correlations)</code></pre>
+            </div>
+
+            <h3>Advanced Model Building - XGBoost</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Python</span>
+                    <button class="copy-btn" aria-label="Copy code">Copy</button>
+                </div>
+                <pre><code class="language-python"># XGBoost model implementation
+from xgboost import XGBClassifier
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
+
+# Prepare features and target
+X = df_encoded.drop('left', axis=1)
+y = df_encoded['left']
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42, stratify=y
+)
+
+# Define XGBoost model with optimized parameters
+xgb_model = XGBClassifier(
+    objective='binary:logistic',
+    max_depth=6,
+    learning_rate=0.1,
+    n_estimators=300,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=42,
+    eval_metric='logloss'
+)
+
+# Train the model
+xgb_model.fit(X_train, y_train)
+
+# Make predictions
+y_pred_xgb = xgb_model.predict(X_test)
+y_pred_proba_xgb = xgb_model.predict_proba(X_test)[:, 1]
+
+# Evaluate performance
+print("XGBoost Model Performance:")
+print(f"Accuracy: {accuracy_score(y_test, y_pred_xgb):.4f}")
+print(f"ROC-AUC: {roc_auc_score(y_test, y_pred_proba_xgb):.4f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred_xgb))</code></pre>
+            </div>
+
+            <h3>Feature Importance Visualization</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Python</span>
+                    <button class="copy-btn" aria-label="Copy code">Copy</button>
+                </div>
+                <pre><code class="language-python"># Feature importance analysis
+import matplotlib.pyplot as plt
+
+# Get feature importance from XGBoost model
+feature_importance = xgb_model.feature_importances_
+feature_names = X_train.columns
+
+# Create DataFrame for easier plotting
+importance_df = pd.DataFrame({
+    'feature': feature_names,
+    'importance': feature_importance
+}).sort_values('importance', ascending=False)
+
+# Plot top 10 most important features
+plt.figure(figsize=(10, 8))
+top_features = importance_df.head(10)
+sns.barplot(data=top_features, x='importance', y='feature', palette='viridis')
+plt.title('Top 10 Feature Importances - XGBoost Model')
+plt.xlabel('Importance Score')
+plt.ylabel('Features')
+plt.tight_layout()
+plt.show()
+
+# Print numerical importance values
+print("Top 10 Most Important Features:")
+for idx, row in top_features.iterrows():
+    print(f"{row['feature']}: {row['importance']:.4f}")</code></pre>
+            </div>
+
+            <button class="collapsible" aria-expanded="false" aria-controls="advanced-code-content">Advanced Analytics: ROC Curves & Model Comparison</button>
+            <div class="content" id="advanced-code-content">
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">Python</span>
+                        <button class="copy-btn" aria-label="Copy code">Copy</button>
+                    </div>
+                    <pre><code class="language-python"># Model comparison with ROC curves
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_curve, auc
+import matplotlib.pyplot as plt
+
+# Train multiple models for comparison
+models = {
+    'Logistic Regression': LogisticRegression(random_state=42, max_iter=1000),
+    'Random Forest': RandomForestClassifier(n_estimators=300, random_state=42),
+    'XGBoost': XGBClassifier(random_state=42, eval_metric='logloss')
+}
+
+# Plot ROC curves
+plt.figure(figsize=(10, 8))
+colors = ['blue', 'green', 'orange']
+
+for i, (name, model) in enumerate(models.items()):
+    # Fit model and predict probabilities
+    model.fit(X_train, y_train)
+    y_proba = model.predict_proba(X_test)[:, 1]
+    
+    # Calculate ROC curve
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+    roc_auc = auc(fpr, tpr)
+    
+    # Plot ROC curve
+    plt.plot(fpr, tpr, color=colors[i], lw=2, 
+             label=f'{name} (AUC = {roc_auc:.3f})')
+
+# Plot diagonal line
+plt.plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--', alpha=0.8)
+
+# Customize plot
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curves - Model Comparison')
+plt.legend(loc="lower right")
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()</code></pre>
+                </div>
+            </div>
+
+            <h3>Business Insights Generation</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Python</span>
+                    <button class="copy-btn" aria-label="Copy code">Copy</button>
+                </div>
+                <pre><code class="language-python"># Generate actionable business insights
+def analyze_high_risk_employees(df, model, feature_names):
+    """
+    Identify high-risk employees and key characteristics
+    """
+    # Predict probabilities for all employees
+    X_all = df[feature_names]
+    risk_scores = model.predict_proba(X_all)[:, 1]
+    
+    # Add risk scores to dataframe
+    df_analysis = df.copy()
+    df_analysis['churn_risk'] = risk_scores
+    
+    # Identify high-risk employees (top 20% risk scores)
+    high_risk_threshold = np.percentile(risk_scores, 80)
+    high_risk_employees = df_analysis[df_analysis['churn_risk'] >= high_risk_threshold]
+    
+    print(f"High-risk employees identified: {len(high_risk_employees)}")
+    print(f"Average risk score: {high_risk_employees['churn_risk'].mean():.3f}")
+    
+    # Analyze characteristics of high-risk group
+    print("\nHigh-Risk Employee Characteristics:")
+    print(f"Average satisfaction: {high_risk_employees['satisfaction_level'].mean():.3f}")
+    print(f"Average monthly hours: {high_risk_employees['average_montly_hours'].mean():.1f}")
+    print(f"Average tenure: {high_risk_employees['time_spend_company'].mean():.1f} years")
+    
+    return high_risk_employees
+
+# Apply the analysis
+high_risk_group = analyze_high_risk_employees(df_encoded, xgb_model, X.columns)</code></pre>
+            </div>
+
+            <p><strong>Technical Stack:</strong> Python, Pandas, NumPy, Scikit-learn, XGBoost, Matplotlib, Seaborn</p>
+            <p><em>Want to see the complete analysis? Check out the full <a href="https://github.com/tzolkowski96/tzolkowski96/tree/main/Employee-Churn-Prediction" target="_blank" rel="noopener noreferrer">Jupyter notebook on GitHub</a> with detailed explanations and additional visualizations.</em></p>
         </section>
 
         <section id="about" class="container section" data-aos="fade-up" aria-labelledby="about-heading">
