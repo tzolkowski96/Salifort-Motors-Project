@@ -277,37 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Basic Syntax Highlighting ---
-    const highlightCode = () => {
-        const codeBlocks = document.querySelectorAll('pre code');
-        
-        codeBlocks.forEach(block => {
-            let html = block.innerHTML;
-            
-            // Python keywords
-            const keywords = ['import', 'from', 'def', 'class', 'if', 'else', 'elif', 'for', 'while', 'try', 'except', 'finally', 'with', 'as', 'return', 'yield', 'pass', 'break', 'continue', 'and', 'or', 'not', 'in', 'is', 'True', 'False', 'None', 'print'];
-            keywords.forEach(keyword => {
-                const regex = new RegExp(`\\b${keyword}\\b`, 'g');
-                html = html.replace(regex, `<span class="keyword">${keyword}</span>`);
-            });
-            
-            // Strings
-            html = html.replace(/(["'])((?:\\.|(?!\1)[^\\])*?)\1/g, '<span class="string">$1$2$1</span>');
-            
-            // Comments
-            html = html.replace(/(#.*$)/gm, '<span class="comment">$1</span>');
-            
-            // Numbers
-            html = html.replace(/\b(\d+\.?\d*)\b/g, '<span class="number">$1</span>');
-            
-            // Functions
-            html = html.replace(/(\w+)(?=\()/g, '<span class="function">$1</span>');
-            
-            block.innerHTML = html;
-        });
-    };
-    
-    // Apply syntax highlighting after DOM is loaded
-    highlightCode();
+    // Code blocks are now handled by Prism.js - no custom highlighting needed
 
 });
