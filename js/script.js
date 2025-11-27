@@ -1,44 +1,106 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Scroll Progress Indicator ---
-    const createScrollIndicator = () => {
-        const indicator = document.createElement('div');
-        indicator.className = 'scroll-indicator';
-        document.body.prepend(indicator);
-        
-        const updateScrollProgress = () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            indicator.style.width = Math.min(scrollPercent, 100) + '%';
-        };
-        
-        window.addEventListener('scroll', updateScrollProgress);
-        updateScrollProgress(); // Initial call
-    };
-    
-    createScrollIndicator();
+    // --- Theme Toggle Logic ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeToggleBtn.querySelector('i');
+    const htmlElement = document.documentElement;
 
-    // --- Navbar Active State on Scroll ---
-    const sections = document.querySelectorAll('.container[id]'); // Select containers with IDs
+    // Check for saved user preference, if any, on load of the website
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+    if (currentTheme) {
+        htmlElement.setAttribute('data-theme', currentTheme);
+
+        if (currentTheme === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+        if (htmlElement.getAttribute('data-theme') === 'dark') {
+            htmlElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            htmlElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    });
+
+    // --- Mobile Menu Logic ---
+    const hamburgerBtn = document.querySelector('.hamburger');
+    const navLinksContainer = document.querySelector('.nav-links');
+
+    if (hamburgerBtn && navLinksContainer) {
+        hamburgerBtn.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+            const icon = hamburgerBtn.querySelector('i');
+            if (navLinksContainer.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when a link is clicked
+        const links = navLinksContainer.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('active');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinksContainer.contains(e.target) && !hamburgerBtn.contains(e.target) && navLinksContainer.classList.contains('active')) {
+                navLinksContainer.classList.remove('active');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
+
+    // --- Scroll Handling (Progress & Active State) ---
+    const indicator = document.createElement('div');
+    indicator.className = 'scroll-indicator';
+    document.body.prepend(indicator);
+
+    const sections = document.querySelectorAll('.container[id]');
     const navLinks = document.querySelectorAll('.navbar a');
 
-    const activateNavLink = () => {
+    const handleScroll = () => {
+        // Update Progress
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        indicator.style.width = Math.min(scrollPercent, 100) + '%';
+
+        // Update Active Nav Link
         let currentSectionId = '';
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100; // Adjust offset as needed
+            const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.offsetHeight;
             if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
                 currentSectionId = section.getAttribute('id');
             }
         });
 
-        // If scrolled to the top or bottom, handle edge cases
-        if (window.scrollY < sections[0].offsetTop - 100) {
-            currentSectionId = sections[0].getAttribute('id');
-        } else if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-            // Check if near the bottom, activate the last section's link
-            currentSectionId = sections[sections.length - 1].getAttribute('id');
+        if (sections.length > 0) {
+            if (window.scrollY < sections[0].offsetTop - 100) {
+                currentSectionId = sections[0].getAttribute('id');
+            } else if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+                currentSectionId = sections[sections.length - 1].getAttribute('id');
+            }
         }
 
         navLinks.forEach(link => {
@@ -49,8 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    window.addEventListener('scroll', activateNavLink);
-    activateNavLink(); // Initial check on load
+    // Optimized Scroll Listener using requestAnimationFrame
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                handleScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    handleScroll(); // Initial call
 
     // --- Smooth Scrolling --- (Optional, browser support is good now, but can be added)
     navLinks.forEach(link => {
@@ -232,6 +305,110 @@ document.addEventListener('DOMContentLoaded', () => {
         currentZoom = newZoom;
         applyTransform();
     }, { passive: false });
+
+    // --- Chart.js Implementation ---
+    const ctx = document.getElementById('modelComparisonChart');
+    
+    if (ctx) {
+        // Function to get colors based on theme
+        const getChartColors = () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            return {
+                text: isDark ? '#f1f5f9' : '#1e293b',
+                grid: isDark ? '#334155' : '#e2e8f0'
+            };
+        };
+
+        let chartColors = getChartColors();
+
+        const modelChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Logistic Regression', 'Random Forest', 'XGBoost'],
+                datasets: [{
+                    label: 'Accuracy',
+                    data: [83, 97.83, 97.96],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // Blue
+                        'rgba(16, 185, 129, 0.7)', // Green
+                        'rgba(249, 115, 22, 0.7)'  // Orange
+                    ],
+                    borderColor: [
+                        'rgb(59, 130, 246)',
+                        'rgb(16, 185, 129)',
+                        'rgb(249, 115, 22)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Model Accuracy Comparison (%)',
+                        color: chartColors.text,
+                        font: {
+                            size: 16,
+                            family: "'Outfit', sans-serif",
+                            weight: 600
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            color: chartColors.grid
+                        },
+                        ticks: {
+                            color: chartColors.text
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: chartColors.text,
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+
+        // Update chart on theme toggle
+        themeToggleBtn.addEventListener('click', function() {
+            // Small timeout to allow attribute to update
+            setTimeout(() => {
+                const newColors = getChartColors();
+                modelChart.options.plugins.title.color = newColors.text;
+                modelChart.options.scales.y.grid.color = newColors.grid;
+                modelChart.options.scales.y.ticks.color = newColors.text;
+                modelChart.options.scales.x.ticks.color = newColors.text;
+                modelChart.update();
+            }, 50);
+        });
+    }
 
     // --- Copy Code Functionality ---
     const copyButtons = document.querySelectorAll('.copy-btn');

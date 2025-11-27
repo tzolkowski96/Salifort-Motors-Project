@@ -3,39 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data science case study analyzing employee turnover at Salifort Motors. Using Python and Machine Learning to predict churn and improve retention.">
+    <meta property="og:title" content="Salifort Motors: Employee Retention Analysis">
+    <meta property="og:description" content="A data storytelling project uncovering why employees leave and how to keep them happy using XGBoost and Random Forest models.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/image_1.png">
     <title>Salifort Motors: Keeping Our People Happy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="header fade-in">
-        <h1>Salifort Motors: Keeping Our People Happy</h1>
-        <p><i>Using Data to Understand Employee Retention</i></p>
+    <header class="hero-section fade-in">
+        <div class="hero-content">
+            <h1>Salifort Motors</h1>
+            <p class="subtitle">Keeping Our People Happy</p>
+            <p class="tagline">Using Data to Understand Employee Retention</p>
+            <a href="#story" class="cta-button">Read the Story <i class="fas fa-arrow-down"></i></a>
+        </div>
+        <div class="hero-visual"></div>
     </header>
 
     <nav class="navbar">
-        <a href="#story" class="active">The Story</a>
-        <a href="#clues">Finding Clues</a>
-        <a href="#predictions">Making Predictions</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#code">Code Showcase</a>
-        <a href="#about">About</a>
+        <button class="hamburger" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="#story" class="active"><i class="fas fa-book-open"></i> The Story</a>
+            <a href="#clues"><i class="fas fa-magnifying-glass"></i> Finding Clues</a>
+            <a href="#predictions"><i class="fas fa-chart-line"></i> Making Predictions</a>
+            <a href="#solutions"><i class="fas fa-lightbulb"></i> Solutions</a>
+            <a href="#code"><i class="fas fa-code"></i> Code Showcase</a>
+            <a href="#about"><i class="fas fa-user"></i> About</a>
+        </div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
     </nav>
 
-    <main>
+    <main id="main-content">
         <section id="story" class="container section" data-aos="fade-up" aria-labelledby="story-heading">
-            <h2 id="story-heading">The Story: Why Employee Happiness Matters More Than Ever</h2>
+            <h2 id="story-heading"><i class="fas fa-book-open"></i> The Story: Why Employee Happiness Matters More Than Ever</h2>
             <p>Hi, I'm <b>Tobin Zolkowski</b>. Welcome! Ever wonder what makes a workplace truly great? It's the people. At Salifort Motors, we value our team immensely. But recently, we noticed a concerning trend: more talented folks were leaving than we were comfortable with. Losing great employees isn't just about replacement costs; it impacts morale, slows innovation, and means losing valuable experience.</p>
             <p>So, we became data detectives! We gathered anonymous information about employee experiences – satisfaction levels, workload, tenure, growth opportunities, and more. Our mission: uncover hidden patterns and understand the real story behind <i>why</i> some thrive and stay, while others move on.</p>
             <p>Think of it as listening to thousands of voices at once, finding common threads. Our goal is to use these insights not just to reduce turnover, but to proactively build a more supportive, engaging, and happier workplace for everyone at Salifort Motors. When our people succeed, the company succeeds.</p>
         </section>
 
         <section id="clues" class="container section" data-aos="fade-up" aria-labelledby="clues-heading">
-            <h2 id="clues-heading">Finding Clues: Listening to the Data's Whispers</h2>
+            <h2 id="clues-heading"><i class="fas fa-magnifying-glass-chart"></i> Finding Clues: Listening to the Data's Whispers</h2>
             <p>Our investigation examined the experiences of <span class="highlight">15,000 employees</span>, looking at ten key factors:</p>
             <ul>
                 <li><b>Happiness Level (Satisfaction)</b>: How content were people? (A crucial clue!)</li>
@@ -143,18 +163,23 @@
         </section>
 
         <section id="predictions" class="container section" data-aos="fade-up" aria-labelledby="predictions-heading">
-            <h2 id="predictions-heading">Making Predictions: Building an Early Warning System</h2>
+            <h2 id="predictions-heading"><i class="fas fa-chart-line"></i> Making Predictions: Building an Early Warning System</h2>
             <p>Spotting past clues is insightful, but what about anticipating the future? We built a predictive tool – an early warning system – to identify employees who might be unhappy or considering leaving, allowing proactive support.</p>
             <h3>Testing Our Crystal Balls: Which Predictor Works Best?</h3>
+            
+            <div class="chart-wrapper" style="position: relative; height:400px; width:100%; margin-bottom: 2rem;">
+                <canvas id="modelComparisonChart"></canvas>
+            </div>
+
             <p>We tested three different methods to see which could most accurately flag potential departures:</p>
             <h4>Method 1: Simple Logic (Logistic Regression) - The Straightforward Approach</h4>
             <ul>
-                <li>Accuracy (Overall Correctness): <span class="highlight">~78%</span> - Okay, but not great.</li>
-                <li>Precision (Correctly ID'ing Leavers): <span class="highlight">~73%</span> - When it said someone might leave, it was right about 3 out of 4 times.</li>
-                <li>Recall (Finding Most Leavers): <span class="highlight">~69%</span> - Missed identifying nearly a third of those who actually left.</li>
-                <li>F1-Score (Balanced Score): <span class="highlight">~71%</span> - A decent balance, but room for improvement.</li>
+                <li>Accuracy (Overall Correctness): <span class="highlight">83%</span> - Seemingly high, but misleading.</li>
+                <li>Precision (Correctly ID'ing Leavers): <span class="highlight">50%</span> - When it said someone might leave, it was a coin flip.</li>
+                <li>Recall (Finding Most Leavers): <span class="highlight">17%</span> - Missed the vast majority (83%) of those who actually left.</li>
+                <li>F1-Score (Balanced Score): <span class="highlight">26%</span> - A poor balance, showing this model struggled to find the people we needed to help.</li>
             </ul>
-            <p><i>Result: A reasonable starting point, but not sensitive enough. It let too many potential leavers slip through the cracks unnoticed.</i></p>
+            <p><i>Result: A reasonable overall accuracy, but it failed where it mattered most: identifying the employees at risk. It let too many potential leavers slip through the cracks.</i></p>
             <h4>Method 2: Teamwork Trees (Random Forest) - The Collaborative Approach</h4>
             <ul>
                 <li>Accuracy: <span class="highlight">97.83%</span> - Highly accurate overall!</li>
@@ -211,7 +236,7 @@
         </section>
 
         <section id="solutions" class="container section" data-aos="fade-up" aria-labelledby="solutions-heading">
-            <h2 id="solutions-heading">Solutions: Turning Insights into Action for a Happier Workplace</h2>
+            <h2 id="solutions-heading"><i class="fas fa-lightbulb"></i> Solutions: Turning Insights into Action for a Happier Workplace</h2>
             <p>We've listened to the data, found clues, and built an early warning system. Now, the crucial part: what do we *do*? How can Salifort use these insights to build a workplace where people feel valued, supported, and choose to stay?</p>
             <p><strong>What We Learned (Key Takeaways):</strong></p>
             <ul>
@@ -230,6 +255,7 @@
                 <li><b>Invest in Mid-Career Development & Retention:</b> Pay special attention to employees approaching the 3-5 year mark. Offer targeted development programs, mentorship opportunities, and clear discussions about career paths within Salifort.</li>
                 <li><b>Enhance the Performance Review Experience:</b> Ensure reviews are perceived as fair, constructive, and genuinely linked to growth. Train managers to deliver effective feedback and discuss career aspirations.</li>
                 <li><b>Strengthen Recognition & Reward Systems:</b> Celebrate successes publicly and privately. Make promotion criteria transparent and achievable. Conduct regular salary benchmarking to ensure competitiveness, paying close attention to the lower and medium bands.</li>
+                <li><b>Pilot Targeted Perks & Benefits:</b> Explore if providing additional perks or benefits to employees with specific characteristics (like those juggling many projects or with longer tenure) can reduce churn.</li>
             </ol>
             <p><u>Looking Ahead: Continuous Improvement</u></p>
             <ul>
@@ -241,7 +267,7 @@
         </section>
 
         <section id="code" class="container section" data-aos="fade-up" aria-labelledby="code-heading">
-            <h2 id="code-heading">Code Showcase: Behind the Analysis</h2>
+            <h2 id="code-heading"><i class="fas fa-laptop-code"></i> Code Showcase: Behind the Analysis</h2>
             <p>Here are some key code snippets that powered this analysis. These examples demonstrate the data science workflow from exploration to model building and evaluation.</p>
             
             <h3>Data Exploration & Preprocessing</h3>
@@ -477,8 +503,27 @@ high_risk_group = analyze_high_risk_employees(df_encoded, xgb_model, X.columns)<
         </section>
 
         <section id="about" class="container section" data-aos="fade-up" aria-labelledby="about-heading">
-            <h2 id="about-heading">About This Project & The Data Detective</h2>
+            <h2 id="about-heading"><i class="fas fa-circle-info"></i> About This Project & The Data Detective</h2>
             <p>This project translated data into a human story and actionable strategies for Salifort Motors' HR and leadership. It shows how data analysis, combined with business thinking, can lead to meaningful workplace improvements.</p>
+            
+            <h3>Methodology: The PACE Framework</h3>
+            <p>This project followed the <b>PACE</b> framework (Plan, Analyze, Construct, Execute) to ensure a structured and rigorous approach:</p>
+            <ul>
+                <li><b>Plan:</b> Defined project goals with stakeholders (HR, Employees, Senior Management) and familiarized with the dataset.</li>
+                <li><b>Analyze:</b> Performed Exploratory Data Analysis (EDA) to uncover patterns, correlations, and outliers.</li>
+                <li><b>Construct:</b> Built and evaluated predictive models (Logistic Regression, Random Forest, XGBoost).</li>
+                <li><b>Execute:</b> Interpreted results, derived business insights, and formulated actionable recommendations.</li>
+            </ul>
+
+            <h3>Ethical Considerations</h3>
+            <p>As data professionals, we adhere to strict ethical guidelines:</p>
+            <ul>
+                <li><b>Data Privacy:</b> Ensuring all employee data is anonymized and free from Personally Identifiable Information (PII).</li>
+                <li><b>Bias Awareness:</b> Actively checking for and mitigating biases in the data and models to prevent unfair discrimination against any group.</li>
+                <li><b>Transparency:</b> Being open about methods and model limitations so stakeholders understand the basis for insights.</li>
+                <li><b>Responsible Application:</b> Ensuring predictions are used to support employees, not to penalize them unfairly.</li>
+            </ul>
+
             <p>I'm Tobin Zolkowski, the data detective behind this analysis. I'm passionate about using data to uncover insights and solve real-world problems. For the technical details (Python code, model specifics), explore the full analysis on GitHub: <a href="https://github.com/tzolkowski96/tzolkowski96/tree/main/Employee-Churn-Prediction" target="_blank" rel="noopener noreferrer">Salifort Employee Churn Analysis</a>.</p>
             <p><i>Transparency Note: This analysis was part of the Google Advanced Data Analytics Capstone. The dataset, while realistic, was provided for educational purposes.</i></p>
         </section>
@@ -498,6 +543,7 @@ high_risk_group = analyze_high_risk_employees(df_encoded, xgb_model, X.columns)<
         <button id="close-fullscreen-btn" aria-label="Close full screen image view" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:24px; cursor:pointer;">×</button>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/script.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Prism.js for syntax highlighting -->

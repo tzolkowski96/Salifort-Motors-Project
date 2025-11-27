@@ -1,140 +1,120 @@
-# Salifort Motors Project Showcase
+# Salifort Motors - Employee Retention Analysis
 
-## Introduction
+![Salifort Motors Banner](images/image_1.png)
 
-Welcome to the Salifort Motors Project Showcase! This project is a comprehensive analysis aimed at understanding and improving employee retention at Salifort Motors. The accompanying [webpage](index.html) provides an interactive, in-depth look into the data analysis, modeling processes, and key findings.
+## 📊 Project Overview
 
-## Table of Contents
-- [Project Goal](#project-goal)
-- [Data Exploration](#data-exploration)
-- [Predictive Modeling](#predictive-modeling)
-- [Key Findings & Recommendations](#key-findings--recommendations)
-- [Webpage Features](#webpage-features)
-- [About the Project](#about-the-project)
+Welcome to the **Salifort Motors Employee Retention Analysis** project! This repository hosts a comprehensive data science case study aimed at understanding why employees leave and how to improve retention at Salifort Motors.
 
-## Project Goal
+The project combines rigorous data analysis with a modern, interactive web showcase to present findings, predictive models, and actionable business recommendations.
 
-Salifort Motors faced challenges with employee turnover. This project uses data analysis and machine learning to identify the key factors driving attrition and provide actionable recommendations for the HR department to improve retention, morale, and productivity.
+**[View the Live Showcase](http://127.0.0.1:8001)** (Local Dev Server)
 
-## Data Exploration
+---
 
-### Dataset Overview
-The analysis is based on a dataset covering 15,000 employees across 10 key attributes:
-- **satisfaction_level**: Employee-reported job satisfaction (0–1)
-- **last_evaluation**: Performance review score (0–1)
-- **number_project**: Number of projects assigned
-- **average_monthly_hours**: Average monthly work hours
-- **time_spend_company**: Years at Salifort
-- **Work_accident**: Whether the employee had a workplace accident (0=No, 1=Yes)
-- **left**: Whether the employee left the company (0=No, 1=Yes - Target Variable)
-- **promotion_last_5years**: Whether the employee received a promotion in the last 5 years (0=No, 1=Yes)
-- **Department**: Employee's department
-- **salary**: Salary category (low, medium, high)
+## 🎯 Project Goal
 
-### Initial Insights & Visualizations
-Exploratory Data Analysis (EDA) revealed key patterns. The webpage showcases 15 visualizations, including:
+Salifort Motors faced a challenge: **high employee turnover**. Losing talented staff impacts morale, productivity, and the bottom line.
 
-1.  **Boxplot of Tenure**: Median tenure is 3 years, with most employees staying 2-4 years.
-    ![Boxplot of Tenure](images/image_1.png)
-2.  **Correlation Heatmap**: Shows relationships, notably a negative correlation between satisfaction and leaving.
-    ![Correlation Heatmap](images/image_2.png)
-3.  **Turnover by Department**: Sales, Technical, and Support departments show higher attrition numbers.
-    ![Employees Leaving by Department](images/image_3.png)
-4.  **Turnover by Salary Level**: Low salary is strongly linked to higher attrition.
-    ![Employees Leaving by Salary Level](images/image_4.png)
-5.  **Overall Salary Distribution**: Most employees are in low or medium salary bands.
-    ![Distribution of Salary Levels](images/image_12.png)
-6.  **Satisfaction Level Distribution**: Bimodal distribution indicates polarized satisfaction levels.
-    ![Distribution of Satisfaction Levels](images/image_5.png)
-7.  **Evaluation Score Distribution**: Peaks suggest distinct performance groups or rating patterns.
-    ![Distribution of Last Evaluation Scores](images/image_6.png)
-8.  **Project Load Distribution**: Most employees handle 3-4 projects; extremes exist.
-    ![Number of Projects Undertaken by Employees](images/image_7.png)
-9.  **Average Monthly Hours Distribution**: Clusters suggest different work intensity patterns (potential burnout risk).
-    ![Distribution of Average Monthly Hours](images/image_8.png)
-10. **Employee Tenure Distribution (Bar Chart)**: Confirms the 3-year peak and drop-off after 5 years.
-    ![Number of Years Employees Have Spent with the Company](images/image_9.png)
-11. **Promotion Impact on Turnover**: Promotions strongly correlate with retention; few employees were promoted.
-    ![Promotions in the Last 5 Years vs. Leaving](images/image_10.png)
-12. **Work Accidents and Retention**: Surprisingly, employees with accidents were less likely to leave.
-    ![Work Accidents vs. Leaving](images/image_11.png)
-13. **Model Predictive Power (ROC Curve)**: Visualizes the high accuracy of Random Forest and XGBoost models (AUC ~0.98).
-    ![ROC Curve](images/image_15.png)
-14. **Key Turnover Drivers (Random Forest)**: Ranks satisfaction, tenure, projects, evaluation, and hours as top factors.
-    ![Top 10 Important Features - Random Forest](images/image_13.png)
-15. **Key Turnover Drivers (XGBoost)**: Similar ranking, highlighting projects, satisfaction, tenure, hours, and evaluation.
-    ![Top 10 Important Features - XGBoost](images/image_14.png)
+Our mission was to become "data detectives":
+1.  **Analyze** employee data to uncover hidden patterns.
+2.  **Build** predictive models to identify at-risk employees.
+3.  **Recommend** data-driven strategies to improve workplace happiness and retention.
 
-## Predictive Modeling
+---
 
-### Approach
-The project followed the PACE framework (Plan, Analyze, Construct, Execute). Three models were built to predict employee turnover:
-- Logistic Regression (Baseline)
-- Random Forest (Ensemble)
-- XGBoost (Gradient Boosting Ensemble)
+## 🚀 Key Features of the Web Showcase
 
-### Model Performance (Test Set)
-- **Logistic Regression**:
-  - Accuracy: ~78%
-  - Precision: ~73%
-  - Recall: ~69%
-  - F1-Score: ~71%
-- **Random Forest**:
-  - Accuracy: **97.83%**
-  - Precision: **98%**
-  - Recall: **89%**
-  - F1-Score: **93%**
-- **XGBoost**:
-  - Accuracy: **97.96%**
-  - Precision: **98%**
-  - Recall: **90%**
-  - F1-Score: **94%**
+This project isn't just about numbers; it's about communicating them effectively. The web interface features:
 
-**XGBoost** was selected as the champion model due to its slightly superior performance.
+*   **📱 Fully Responsive Design**: Optimized for mobile, tablet, and desktop with a fluid layout.
+*   **🌗 Dark/Light Mode**: A robust theming system that respects user preference and toggles seamlessly.
+*   **✨ Interactive Visualizations**: Zoomable charts with tooltips and detailed captions.
+*   **♿ Accessible**: Built with semantic HTML, ARIA labels, skip links, and keyboard navigation support.
+*   **⚡ High Performance**: Optimized assets and smooth animations using `requestAnimationFrame`.
+*   **📈 Predictive Modeling Insight**: A deep dive into how XGBoost and Random Forest models were used.
 
-### Feature Importance
-Both Random Forest and XGBoost identified the following as the most critical factors influencing turnover:
-- **Satisfaction Level**
-- **Time Spent at Company (Tenure)**
-- **Number of Projects**
-- **Average Monthly Hours**
-- **Last Evaluation Score**
+---
 
-## Key Findings & Recommendations
+## 🛠️ Technologies Used
 
-### Summary of Findings
-Turnover at Salifort Motors is significantly driven by low satisfaction, the critical 3-5 year tenure window, imbalanced workloads (projects/hours), lower evaluation scores, lack of promotions, and low salary.
+### Web Interface
+*   **HTML5**: Semantic structure.
+*   **CSS3**: Custom properties (variables), Flexbox/Grid, Media Queries, Animations.
+*   **JavaScript (ES6+)**: DOM manipulation, Event handling, Theme logic, Chart.js integration.
+*   **Libraries**:
+    *   [Chart.js](https://www.chartjs.org/): For dynamic data visualization.
+    *   [AOS (Animate On Scroll)](https://michalsnik.github.io/aos/): For scroll animations.
+    *   [Prism.js](https://prismjs.com/): For syntax highlighting in code blocks.
+    *   [Font Awesome](https://fontawesome.com/): For iconography.
 
-### Strategic Recommendations
-1.  **Boost Satisfaction:** Implement regular monitoring (e.g., pulse surveys) and address concerns related to pay, workload, and recognition.
-2.  **Manage Workload:** Ensure fair project distribution, addressing both potential burnout and disengagement.
-3.  **Focus on Mid-Tenure:** Develop clear career paths and growth opportunities for employees with 3-5 years of service.
-4.  **Enhance Performance Management:** Ensure fairness and link evaluations to development.
-5.  **Recognize & Promote:** Improve visibility of career paths, recognize contributions, and review compensation competitiveness.
+### Data Analysis (Python)
+*   **Pandas & NumPy**: Data manipulation and cleaning.
+*   **Matplotlib & Seaborn**: Exploratory Data Analysis (EDA) and static plotting.
+*   **Scikit-Learn**: Model building (Logistic Regression, Random Forest).
+*   **XGBoost**: Advanced gradient boosting for high-accuracy predictions.
 
-### Next Steps
-- Conduct qualitative analysis (exit interviews, focus groups) for deeper insights.
-- Pilot targeted retention programs for high-risk employee segments.
-- Regularly retrain the predictive model with new data.
+---
 
-## Webpage Features
+## 📂 Project Structure
 
-The `index.html` showcase page includes:
-- **Modern Design**: Clean layout, professional color scheme, gradient backgrounds, and subtle shadows.
-- **Interactive Elements**: Smooth scrolling, sticky navigation, collapsible sections for detailed content, image zoom functionality, and tooltips.
-- **Animations**: Fade-in and slide-in effects for content sections.
-- **Accessibility**: Semantic HTML, ARIA attributes for interactive elements (collapsibles, overlay), focus management for the image overlay.
-- **Responsiveness**: Adapts to different screen sizes.
+```
+Salifort-Motors-Project/
+├── css/
+│   └── style.css       # Main stylesheet (variables, layout, components)
+├── js/
+│   └── script.js       # Logic for theme, scroll, charts, and interactions
+├── images/             # Static assets and analysis charts
+├── index.html          # Main entry point
+└── README.md           # Project documentation
+```
 
-## About the Project
+---
 
-This project demonstrates the application of data analysis and machine learning to solve a real-world business problem. It was completed as part of the Google Advanced Data Analytics Professional Certificate.
+## 🏁 Getting Started
 
-- **Author**: Tobin Zolkowski
-- **Course**: Google Advanced Data Analytics Capstone
-- **Dataset Credit**: Coursera / Google
-- **Project Code**: [Python Notebooks/Code](https://github.com/tzolkowski96/tzolkowski96/tree/main/Employee-Churn-Prediction) (Link to original analysis code)
-- **Showcase Repository**: [GitHub Repository](https://github.com/tzolkowski96/Salifort-Motors-Project)
+To view the project locally:
 
-## License
-&copy; 2024-2025 Tobin Zolkowski. All rights reserved.
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/tzolkowski96/Salifort-Motors-Project.git
+    cd Salifort-Motors-Project
+    ```
+
+2.  **Start a local server**:
+    You can use Python's built-in HTTP server:
+    ```bash
+    python3 -m http.server 8000
+    ```
+
+3.  **Open in Browser**:
+    Navigate to `http://localhost:8000` to view the site.
+
+---
+
+## 🔍 Key Findings
+
+Our analysis of 15,000 employee records revealed critical insights:
+
+1.  **The "Happiness Gap"**: Low satisfaction is the #1 predictor of turnover.
+2.  **The 3-Year Itch**: Employees are most likely to leave between their 3rd and 5th year.
+3.  **Burnout Risk**: High project counts (6-7) and excessive monthly hours (>200) drive people away.
+4.  **Salary Matters**: Low salary bands see significantly higher turnover rates.
+5.  **Promotion Power**: Employees promoted in the last 5 years almost *never* leave.
+
+**Champion Model**: The **XGBoost** model achieved **98% accuracy** and **90% recall**, making it a highly effective early warning system.
+
+---
+
+## 👥 Credits & Acknowledgments
+
+*   **Author**: Tobin Zolkowski
+*   **Context**: Google Advanced Data Analytics Capstone Project
+*   **Data Source**: Provided by Google/Coursera (Simulated dataset)
+
+---
+
+## 📄 License
+
+&copy; 2025 Tobin Zolkowski. All rights reserved.
+This project is for educational and portfolio purposes.
